@@ -1,0 +1,30 @@
+[gd_scene load_steps=5 format=3 uid="uid://6m0lbew8qlb8"]
+
+[ext_resource type="Texture2D" uid="uid://dpwl1y8sbbtm0" path="res://Sprites/fire_orb.png" id="1_k3t5h"]
+[ext_resource type="Script" path="res://FireOrb.gd" id="2_3eh2e"]
+[ext_resource type="FontFile" uid="uid://cv2ux2mgk6ig5" path="res://Fonts/cc.yal.6w4.otf" id="3_gqbds"]
+[ext_resource type="Texture2D" uid="uid://bcktag2dgjej4" path="res://Sprites/mana_star_mini.png" id="4_ugxhq"]
+
+[node name="FireOrb" type="TextureRect"]
+offset_right = 48.0
+offset_bottom = 48.0
+pivot_offset = Vector2(24, 24)
+texture = ExtResource("1_k3t5h")
+script = ExtResource("2_3eh2e")
+
+[node name="ManaCostLabel" type="Label" parent="."]
+layout_mode = 0
+offset_left = 23.0
+offset_top = 48.0
+offset_right = 63.0
+offset_bottom = 71.0
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_outline_size = 0
+theme_override_fonts/font = ExtResource("3_gqbds")
+text = "50"
+
+[node name="ManaStarMini" type="Sprite2D" parent="ManaCostLabel"]
+position = Vector2(-4, 6)
+texture = ExtResource("4_ugxhq")
+
+[connection signal="gui_input" from="." to="." method="_on_gui_input"]

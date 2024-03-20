@@ -1,0 +1,191 @@
+[gd_scene load_steps=11 format=3 uid="uid://cq2jpk8jlecl2"]
+
+[ext_resource type="Script" path="res://main_menu.gd" id="1_gi8nm"]
+[ext_resource type="FontFile" uid="uid://bmo7ru736mqg5" path="res://Fonts/NicerNightie.ttf" id="2_1j0ps"]
+[ext_resource type="FontFile" uid="uid://dm8daxmtwnujv" path="res://Fonts/Passage 7 Basic.ttf" id="3_ag1a8"]
+[ext_resource type="Script" path="res://Scenes/volume_slider.gd" id="3_atbhv"]
+[ext_resource type="Texture2D" uid="uid://bq4relwsnx1x1" path="res://Sprites/build_orb.png" id="5_1ac3h"]
+[ext_resource type="Texture2D" uid="uid://bhrkxlvvnajl" path="res://Sprites/earth_orb.png" id="6_ewjx5"]
+[ext_resource type="Texture2D" uid="uid://dpwl1y8sbbtm0" path="res://Sprites/fire_orb.png" id="7_siarc"]
+[ext_resource type="Texture2D" uid="uid://b17mcvsm2f03i" path="res://Sprites/psychic_orb.png" id="8_u8maf"]
+[ext_resource type="Texture2D" uid="uid://7fcgmvhgqowo" path="res://Sprites/life_orb.png" id="9_2x22k"]
+[ext_resource type="Texture2D" uid="uid://6gb522j71p3i" path="res://Sprites/menu_background.png" id="10_f17ac"]
+
+[node name="MainMenu" type="Control" node_paths=PackedStringArray("menu", "options")]
+layout_mode = 3
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_gi8nm")
+menu = NodePath("CenterContainer/MarginContainer/Menu")
+options = NodePath("CenterContainer/MarginContainer/Options")
+
+[node name="CenterContainer" type="CenterContainer" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -71.0
+offset_top = -5.0
+offset_right = 67.0
+offset_bottom = 171.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="CenterContainer"]
+layout_mode = 2
+
+[node name="Menu" type="VBoxContainer" parent="CenterContainer/MarginContainer"]
+layout_mode = 2
+
+[node name="PlayButton" type="Button" parent="CenterContainer/MarginContainer/Menu"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_1j0ps")
+theme_override_font_sizes/font_size = 24
+text = "Start"
+
+[node name="OptionsButton" type="Button" parent="CenterContainer/MarginContainer/Menu"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_1j0ps")
+theme_override_font_sizes/font_size = 24
+text = "Options"
+
+[node name="QuitButton" type="Button" parent="CenterContainer/MarginContainer/Menu"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_1j0ps")
+theme_override_font_sizes/font_size = 24
+text = "Quit"
+
+[node name="Options" type="VBoxContainer" parent="CenterContainer/MarginContainer"]
+visible = false
+layout_mode = 2
+
+[node name="Label" type="Label" parent="CenterContainer/MarginContainer/Options"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_1j0ps")
+theme_override_font_sizes/font_size = 24
+text = "Options"
+horizontal_alignment = 1
+
+[node name="Label2" type="Label" parent="CenterContainer/MarginContainer/Options"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("3_ag1a8")
+text = "Volume"
+horizontal_alignment = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CenterContainer/MarginContainer/Options"]
+layout_mode = 2
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="CenterContainer/MarginContainer/Options/HBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="CenterContainer/MarginContainer/Options/HBoxContainer/VBoxContainer2"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("3_ag1a8")
+text = "Master"
+
+[node name="Label2" type="Label" parent="CenterContainer/MarginContainer/Options/HBoxContainer/VBoxContainer2"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("3_ag1a8")
+text = "Music"
+
+[node name="Label3" type="Label" parent="CenterContainer/MarginContainer/Options/HBoxContainer/VBoxContainer2"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("3_ag1a8")
+text = "Sounds"
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer/MarginContainer/Options/HBoxContainer"]
+layout_mode = 2
+
+[node name="MasterVolumeSlider" type="HSlider" parent="CenterContainer/MarginContainer/Options/HBoxContainer/VBoxContainer"]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+max_value = 1.0
+step = 0.001
+script = ExtResource("3_atbhv")
+
+[node name="VolumeSlider2" type="HSlider" parent="CenterContainer/MarginContainer/Options/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+max_value = 1.0
+step = 0.001
+script = ExtResource("3_atbhv")
+bus_index = "Music"
+
+[node name="VolumeSlider3" type="HSlider" parent="CenterContainer/MarginContainer/Options/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+max_value = 1.0
+step = 0.001
+script = ExtResource("3_atbhv")
+bus_index = "Sounds"
+
+[node name="BackButton" type="Button" parent="CenterContainer/MarginContainer/Options"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_1j0ps")
+theme_override_font_sizes/font_size = 24
+text = "Back"
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 0
+offset_left = 1.0
+offset_right = 41.0
+offset_bottom = 40.0
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 0
+offset_left = -55.0
+offset_top = -132.0
+offset_right = 55.0
+offset_bottom = -50.0
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 2
+theme_override_fonts/font = ExtResource("2_1j0ps")
+theme_override_font_sizes/font_size = 24
+text = "Orbs
+of
+Power"
+horizontal_alignment = 1
+
+[node name="BuildOrb" type="Sprite2D" parent="Label"]
+z_index = -1
+position = Vector2(53, 93)
+texture = ExtResource("5_1ac3h")
+
+[node name="EarthOrb" type="Sprite2D" parent="Label"]
+z_index = -2
+position = Vector2(102, 60)
+texture = ExtResource("6_ewjx5")
+
+[node name="FireOrb" type="Sprite2D" parent="Label"]
+z_index = -2
+position = Vector2(9, 57)
+texture = ExtResource("7_siarc")
+
+[node name="PsychicOrb" type="Sprite2D" parent="Label"]
+z_index = -2
+position = Vector2(28, 8)
+texture = ExtResource("8_u8maf")
+
+[node name="LifeOrb" type="Sprite2D" parent="Label"]
+z_index = -2
+position = Vector2(88, 10)
+texture = ExtResource("9_2x22k")
+
+[node name="MenuBackground" type="Sprite2D" parent="."]
+z_index = -4
+position = Vector2(28, -45)
+texture = ExtResource("10_f17ac")
+
+[connection signal="pressed" from="CenterContainer/MarginContainer/Menu/PlayButton" to="." method="_on_play_button_pressed"]
+[connection signal="pressed" from="CenterContainer/MarginContainer/Menu/OptionsButton" to="." method="_on_options_button_pressed"]
+[connection signal="pressed" from="CenterContainer/MarginContainer/Menu/QuitButton" to="." method="_on_quit_button_pressed"]
+[connection signal="value_changed" from="CenterContainer/MarginContainer/Options/HBoxContainer/VBoxContainer/MasterVolumeSlider" to="CenterContainer/MarginContainer/Options/HBoxContainer/VBoxContainer/MasterVolumeSlider" method="_on_value_changed"]
+[connection signal="value_changed" from="CenterContainer/MarginContainer/Options/HBoxContainer/VBoxContainer/VolumeSlider2" to="CenterContainer/MarginContainer/Options/HBoxContainer/VBoxContainer/VolumeSlider2" method="_on_value_changed"]
+[connection signal="value_changed" from="CenterContainer/MarginContainer/Options/HBoxContainer/VBoxContainer/VolumeSlider3" to="CenterContainer/MarginContainer/Options/HBoxContainer/VBoxContainer/VolumeSlider3" method="_on_value_changed"]
+[connection signal="pressed" from="CenterContainer/MarginContainer/Options/BackButton" to="." method="_on_back_button_pressed"]
+[connection signal="pressed" from="CenterContainer/MarginContainer/Options/BackButton" to="." method="_on_button_pressed"]

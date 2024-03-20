@@ -1,0 +1,165 @@
+[gd_scene load_steps=7 format=3 uid="uid://n0pgkdsnjg70"]
+
+[ext_resource type="FontFile" uid="uid://bmo7ru736mqg5" path="res://Fonts/NicerNightie.ttf" id="1_xfspf"]
+[ext_resource type="FontFile" uid="uid://dm8daxmtwnujv" path="res://Fonts/Passage 7 Basic.ttf" id="2_ef6e7"]
+[ext_resource type="Script" path="res://Scenes/play_level_button.gd" id="3_h1tef"]
+[ext_resource type="Texture2D" uid="uid://6gb522j71p3i" path="res://Sprites/menu_background.png" id="4_5n6gg"]
+
+[sub_resource type="Theme" id="Theme_6p0jl"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_24twl"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(1, 1, 1, 1)
+border_blend = true
+
+[node name="Control" type="Control"]
+layout_mode = 3
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MarginContainer2" type="MarginContainer" parent="."]
+layout_mode = 0
+offset_left = -320.0
+offset_top = -180.0
+offset_right = 320.0
+offset_bottom = 180.0
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer2"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="MarginContainer2/VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_xfspf")
+theme_override_font_sizes/font_size = 48
+text = "Levels"
+horizontal_alignment = 1
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer2/VBoxContainer"]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer2/VBoxContainer/MarginContainer"]
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer2/VBoxContainer/MarginContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme = SubResource("Theme_6p0jl")
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer2/VBoxContainer/MarginContainer/HBoxContainer/MarginContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="MarginContainer2/VBoxContainer/MarginContainer/HBoxContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_xfspf")
+theme_override_font_sizes/font_size = 24
+text = "Path in the Mountains"
+horizontal_alignment = 1
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer2/VBoxContainer/MarginContainer/HBoxContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 60
+theme_override_constants/margin_right = 60
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer2/VBoxContainer/MarginContainer/HBoxContainer/MarginContainer/VBoxContainer/MarginContainer"]
+layout_mode = 2
+
+[node name="Label2" type="Label" parent="MarginContainer2/VBoxContainer/MarginContainer/HBoxContainer/MarginContainer/VBoxContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_ef6e7")
+text = "Difficulty: Easy"
+
+[node name="Label" type="Label" parent="MarginContainer2/VBoxContainer/MarginContainer/HBoxContainer/MarginContainer/VBoxContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_ef6e7")
+text = "4 waves"
+
+[node name="PlayLevelButton" type="Button" parent="MarginContainer2/VBoxContainer/MarginContainer/HBoxContainer/MarginContainer/VBoxContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_ef6e7")
+theme_override_styles/normal = SubResource("StyleBoxFlat_24twl")
+text = "PLAY"
+script = ExtResource("3_h1tef")
+level_path = "res://Scenes/level1.tscn"
+
+[node name="Panel" type="Panel" parent="MarginContainer2/VBoxContainer/MarginContainer/HBoxContainer/MarginContainer/VBoxContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="MarginContainer3" type="MarginContainer" parent="MarginContainer2/VBoxContainer/MarginContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme = SubResource("Theme_6p0jl")
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer2/VBoxContainer/MarginContainer/HBoxContainer/MarginContainer3"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="MarginContainer2/VBoxContainer/MarginContainer/HBoxContainer/MarginContainer3/VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_xfspf")
+theme_override_font_sizes/font_size = 24
+text = "The Criossroads"
+horizontal_alignment = 1
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer2/VBoxContainer/MarginContainer/HBoxContainer/MarginContainer3/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 60
+theme_override_constants/margin_right = 60
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer2/VBoxContainer/MarginContainer/HBoxContainer/MarginContainer3/VBoxContainer/MarginContainer"]
+layout_mode = 2
+
+[node name="Label2" type="Label" parent="MarginContainer2/VBoxContainer/MarginContainer/HBoxContainer/MarginContainer3/VBoxContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_ef6e7")
+text = "Difficulty: Medium"
+
+[node name="Label" type="Label" parent="MarginContainer2/VBoxContainer/MarginContainer/HBoxContainer/MarginContainer3/VBoxContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_ef6e7")
+text = "5 waves"
+
+[node name="PlayLevelButton" type="Button" parent="MarginContainer2/VBoxContainer/MarginContainer/HBoxContainer/MarginContainer3/VBoxContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_ef6e7")
+theme_override_styles/normal = SubResource("StyleBoxFlat_24twl")
+text = "PLAY"
+script = ExtResource("3_h1tef")
+level_path = "res://Scenes/level1.tscn"
+
+[node name="MenuBackground" type="Sprite2D" parent="."]
+z_index = -4
+position = Vector2(28, 100)
+texture = ExtResource("4_5n6gg")
+
+[node name="Button" type="Button" parent="."]
+layout_mode = 0
+offset_left = -29.0
+offset_top = 45.0
+offset_right = 38.0
+offset_bottom = 87.0
+theme_override_fonts/font = ExtResource("1_xfspf")
+theme_override_font_sizes/font_size = 24
+text = "Quit"
+
+[connection signal="pressed" from="MarginContainer2/VBoxContainer/MarginContainer/HBoxContainer/MarginContainer/VBoxContainer/MarginContainer/VBoxContainer/PlayLevelButton" to="MarginContainer2/VBoxContainer/MarginContainer/HBoxContainer/MarginContainer/VBoxContainer/MarginContainer/VBoxContainer/PlayLevelButton" method="_on_pressed"]
+[connection signal="pressed" from="MarginContainer2/VBoxContainer/MarginContainer/HBoxContainer/MarginContainer3/VBoxContainer/MarginContainer/VBoxContainer/PlayLevelButton" to="MarginContainer2/VBoxContainer/MarginContainer/HBoxContainer/MarginContainer3/VBoxContainer/MarginContainer/VBoxContainer/PlayLevelButton" method="_on_pressed"]

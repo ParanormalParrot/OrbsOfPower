@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://vyxtluyktwo6"]
+
+[ext_resource type="Texture2D" uid="uid://bq4relwsnx1x1" path="res://Sprites/build_orb.png" id="1_3863x"]
+[ext_resource type="Script" path="res://BuildOrb.gd" id="2_bayxg"]
+
+[node name="BuildOrb" type="TextureRect"]
+offset_left = 117.0
+offset_top = 309.0
+offset_right = 165.0
+offset_bottom = 357.0
+texture = ExtResource("1_3863x")
+script = ExtResource("2_bayxg")
+
+[connection signal="gui_input" from="." to="." method="_on_gui_input"]

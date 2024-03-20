@@ -1,0 +1,49 @@
+[gd_scene load_steps=3 format=3 uid="uid://dh1b1u2emko5s"]
+
+[sub_resource type="GDScript" id="GDScript_4514r"]
+script/source = "extends StaticBody2D
+
+class_name AttackTower
+var projectileAsset
+var projectileDamage = 5
+var enemies = []
+var target
+var isAttackCharged = false
+
+
+func _on_range_body_entered(body):
+	if body.is_in_group(\"Enemy\"):
+		enemies.append(body)
+		
+
+
+func _on_range_body_exited(body):
+	if body.is_in_group(\"Enemy\"):
+		enemies.erase(body)
+
+
+func _process(delta):
+	if isAttackCharged:
+		shoot()
+		
+
+func shoot():
+	if enemies != []:
+		var projectiile = projectileAsset.instantiate()
+		get_node(\"ProjectileContainer\").add_child(projectiile)
+		projectiile.global_position = $ShotPoint.global_position
+		target = enemies[0];
+		for i in enemies:
+			if i.get_parent().get_progress() > target.get_parent().get_progress():
+				target = i;
+		projectiile.target = target;
+		isAttackCharged = false	
+"
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_hajvm"]
+
+[node name="BaseTower" type="StaticBody2D"]
+script = SubResource("GDScript_4514r")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_hajvm")

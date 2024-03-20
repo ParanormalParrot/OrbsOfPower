@@ -1,0 +1,30 @@
+[gd_scene load_steps=5 format=3 uid="uid://6o2v5sanfoi0"]
+
+[ext_resource type="Texture2D" uid="uid://bhrkxlvvnajl" path="res://Sprites/earth_orb.png" id="1_pj5sf"]
+[ext_resource type="Script" path="res://UI/EarthOrb.gd" id="2_nt3r5"]
+[ext_resource type="FontFile" uid="uid://cv2ux2mgk6ig5" path="res://Fonts/cc.yal.6w4.otf" id="3_6biip"]
+[ext_resource type="Texture2D" uid="uid://bcktag2dgjej4" path="res://Sprites/mana_star_mini.png" id="4_h8tbd"]
+
+[node name="EarthOrb" type="TextureRect"]
+offset_right = 48.0
+offset_bottom = 48.0
+pivot_offset = Vector2(24, 24)
+texture = ExtResource("1_pj5sf")
+script = ExtResource("2_nt3r5")
+
+[node name="ManaCostLabel" type="Label" parent="."]
+layout_mode = 0
+offset_left = 24.0
+offset_top = 48.0
+offset_right = 64.0
+offset_bottom = 71.0
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_outline_size = 0
+theme_override_fonts/font = ExtResource("3_6biip")
+text = "50"
+
+[node name="ManaStarMini" type="Sprite2D" parent="ManaCostLabel"]
+position = Vector2(-4, 6)
+texture = ExtResource("4_h8tbd")
+
+[connection signal="gui_input" from="." to="." method="_on_gui_input"]

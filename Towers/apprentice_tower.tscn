@@ -1,0 +1,81 @@
+[gd_scene load_steps=7 format=3 uid="uid://b4hfc1mju8cb2"]
+
+[ext_resource type="Script" path="res://Towers/AttackTower.gd" id="1_7hkvd"]
+[ext_resource type="Texture2D" uid="uid://tg1qqpi86ncg" path="res://Sprites/apprentice_mage_tower.png" id="1_50qn6"]
+[ext_resource type="Texture2D" uid="uid://cs1mskli4ixet" path="res://Sprites/apprentice_mage.png" id="2_vig1p"]
+[ext_resource type="PackedScene" uid="uid://cpafvfljhg0um" path="res://UI/tower_ui.tscn" id="4_dic27"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_rmnys"]
+radius = 15.0
+height = 45.0
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_umy21"]
+radius = 75.0
+height = 200.0
+
+[node name="ApprenticeTower" type="StaticBody2D" groups=["Tower"]]
+collision_layer = 3
+collision_mask = 3
+script = ExtResource("1_7hkvd")
+projectileDamage = 10
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+light_mask = 3
+visibility_layer = 3
+position = Vector2(0, 5)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_rmnys")
+
+[node name="ApprenticeMageTower" type="Sprite2D" parent="."]
+texture = ExtResource("1_50qn6")
+
+[node name="ApprenticeMage" type="Sprite2D" parent="ApprenticeMageTower"]
+position = Vector2(0, -25)
+texture = ExtResource("2_vig1p")
+
+[node name="ShotPoint" type="Marker2D" parent="."]
+position = Vector2(0, -19)
+
+[node name="Range" type="Area2D" parent="."]
+
+[node name="RangeCollisison" type="CollisionShape2D" parent="Range"]
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_umy21")
+
+[node name="Aim" type="Marker2D" parent="."]
+
+[node name="ProjectileContainer" type="Node" parent="."]
+
+[node name="Timer" type="Timer" parent="."]
+autostart = true
+
+[node name="TowerUI" parent="." instance=ExtResource("4_dic27")]
+
+[node name="DismantleButton" parent="TowerUI" index="0"]
+mouse_filter = 1
+
+[node name="MouseArea2D" type="Area2D" parent="."]
+z_index = 5
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="MouseArea2D"]
+light_mask = 3
+visibility_layer = 3
+position = Vector2(0, 5)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_rmnys")
+
+[connection signal="input_event" from="." to="." method="_on_input_event"]
+[connection signal="area_entered" from="Range" to="." method="_on_range_area_entered"]
+[connection signal="body_entered" from="Range" to="." method="_on_range_body_entered"]
+[connection signal="body_exited" from="Range" to="." method="_on_range_body_exited"]
+[connection signal="body_shape_exited" from="Range" to="." method="_on_range_body_shape_exited"]
+[connection signal="input_event" from="Range" to="." method="_on_range_input_event"]
+[connection signal="mouse_exited" from="Range" to="." method="_on_range_mouse_exited"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+[connection signal="focus_exited" from="TowerUI" to="." method="_on_tower_ui_focus_exited"]
+[connection signal="mouse_exited" from="TowerUI" to="." method="_on_tower_ui_mouse_exited"]
+[connection signal="pressed" from="TowerUI/DismantleButton" to="." method="_on_dismantle_button_pressed"]
+[connection signal="input_event" from="MouseArea2D" to="." method="_on_mouse_area_2d_input_event"]
+[connection signal="mouse_shape_exited" from="MouseArea2D" to="." method="_on_mouse_area_2d_mouse_shape_exited"]
+
+[editable path="TowerUI"]

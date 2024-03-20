@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3 uid="uid://c4srfgria2vps"]
+
+[ext_resource type="Script" path="res://audio_manager.gd" id="1_r1ix0"]
+[ext_resource type="AudioStream" uid="uid://b52jbb65ofobt" path="res://Audio/Dark Souls 2 OST - Majula [HQ] (Remastered) (320 kbps).mp3" id="2_gt22k"]
+
+[node name="Node" type="Node"]
+script = ExtResource("1_r1ix0")
+
+[node name="MenuMusic" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_gt22k")
+bus = &"Music"

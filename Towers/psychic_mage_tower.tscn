@@ -1,0 +1,79 @@
+[gd_scene load_steps=10 format=3 uid="uid://boexfihcr4wtc"]
+
+[ext_resource type="Script" path="res://Towers/psychic_mage_tower.gd" id="1_54q7s"]
+[ext_resource type="PackedScene" uid="uid://c6b1fpkf0clln" path="res://Projectiles/psychic_wave.tscn" id="2_bf7la"]
+[ext_resource type="Texture2D" uid="uid://tg1qqpi86ncg" path="res://Sprites/apprentice_mage_tower.png" id="3_b18in"]
+[ext_resource type="Texture2D" uid="uid://bngurskurfqhu" path="res://Sprites/psychic_mage.png" id="4_xqwbk"]
+[ext_resource type="Texture2D" uid="uid://bflbh7e33igdq" path="res://Sprites/psychic_banner.png" id="5_0qde6"]
+[ext_resource type="PackedScene" uid="uid://cpafvfljhg0um" path="res://UI/tower_ui.tscn" id="6_8lbwy"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_umy21"]
+radius = 75.0
+height = 200.0
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_obql7"]
+radius = 15.0
+height = 45.0
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ysj3e"]
+radius = 15.0
+height = 45.0
+
+[node name="PsychicMageTower" type="StaticBody2D" groups=["Tower"]]
+collision_layer = 3
+collision_mask = 3
+script = ExtResource("1_54q7s")
+projectileAsset = ExtResource("2_bf7la")
+projectileDamage = 7
+recharge_time = 1.5
+
+[node name="ApprenticeMageTower" type="Sprite2D" parent="."]
+texture = ExtResource("3_b18in")
+
+[node name="PsychicMage" type="Sprite2D" parent="ApprenticeMageTower"]
+position = Vector2(0, -31)
+texture = ExtResource("4_xqwbk")
+
+[node name="ShotPoint" type="Marker2D" parent="."]
+position = Vector2(1, -39)
+
+[node name="Range" type="Area2D" parent="."]
+
+[node name="RangeCollisison" type="CollisionShape2D" parent="Range"]
+position = Vector2(-1, 0)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_umy21")
+
+[node name="Aim" type="Marker2D" parent="."]
+
+[node name="ProjectileContainer" type="Node" parent="."]
+
+[node name="Timer" type="Timer" parent="."]
+autostart = true
+
+[node name="PsychicBanner" type="Sprite2D" parent="."]
+position = Vector2(0, 5)
+texture = ExtResource("5_0qde6")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 5)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_obql7")
+
+[node name="MouseArea2D" type="Area2D" parent="."]
+position = Vector2(0, -6)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="MouseArea2D"]
+light_mask = 3
+visibility_layer = 3
+position = Vector2(0, 5)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_ysj3e")
+
+[node name="TowerUI" parent="." instance=ExtResource("6_8lbwy")]
+
+[connection signal="area_entered" from="Range" to="." method="_on_range_area_entered"]
+[connection signal="body_entered" from="Range" to="." method="_on_range_body_entered"]
+[connection signal="body_exited" from="Range" to="." method="_on_range_body_exited"]
+[connection signal="body_shape_exited" from="Range" to="." method="_on_range_body_shape_exited"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

@@ -1,0 +1,44 @@
+[gd_scene load_steps=7 format=3 uid="uid://b4hfc1mju8cb2"]
+
+[ext_resource type="Texture2D" uid="uid://tg1qqpi86ncg" path="res://Sprites/apprentice_mage_tower.png" id="1_50qn6"]
+[ext_resource type="Script" path="res://Towers/apprentice_tower.gd" id="1_w0c2r"]
+[ext_resource type="Texture2D" uid="uid://cs1mskli4ixet" path="res://Sprites/apprentice_mage.png" id="2_vig1p"]
+[ext_resource type="Script" path="res://Towers/ApprenticeMageTower.gd" id="3_nn430"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_0350v"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_umy21"]
+radius = 75.0
+height = 200.0
+
+[node name="ApprenticeTower" type="StaticBody2D"]
+script = ExtResource("1_w0c2r")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_0350v")
+
+[node name="ApprenticeMageTower" type="Sprite2D" parent="."]
+position = Vector2(0, -2)
+texture = ExtResource("1_50qn6")
+script = ExtResource("3_nn430")
+
+[node name="ApprenticeMage" type="Sprite2D" parent="ApprenticeMageTower"]
+position = Vector2(0, -25)
+texture = ExtResource("2_vig1p")
+
+[node name="ShotPoint" type="Marker2D" parent="."]
+position = Vector2(0, -19)
+
+[node name="Range" type="Area2D" parent="."]
+
+[node name="RangeCollisison" type="CollisionShape2D" parent="Range"]
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_umy21")
+
+[node name="Aim" type="Marker2D" parent="."]
+
+[node name="ProjectileContainer" type="Node" parent="."]
+
+[connection signal="body_entered" from="Range" to="." method="_on_range_body_entered"]
+[connection signal="body_exited" from="Range" to="." method="_on_range_body_exited"]
+[connection signal="body_shape_exited" from="Range" to="." method="_on_range_body_shape_exited"]

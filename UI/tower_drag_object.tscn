@@ -1,0 +1,57 @@
+[gd_scene load_steps=6 format=3 uid="uid://coo0olsccbd1p"]
+
+[ext_resource type="Script" path="res://UI/tower_drag_object.gd" id="1_js3eh"]
+[ext_resource type="Texture2D" uid="uid://tg1qqpi86ncg" path="res://Sprites/apprentice_mage_tower.png" id="1_vn2so"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_6qwjv"]
+radius = 15.0
+height = 45.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_mb5jq"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_i1mea"]
+bg_color = Color(1, 1, 1, 0.517647)
+corner_radius_top_left = 90
+corner_radius_top_right = 90
+corner_radius_bottom_right = 90
+corner_radius_bottom_left = 90
+expand_margin_left = 10.0
+
+[node name="TowerDragObject" type="CharacterBody2D"]
+script = ExtResource("1_js3eh")
+
+[node name="ApprenticeMageTower" type="Sprite2D" parent="."]
+texture = ExtResource("1_vn2so")
+
+[node name="Area2D" type="Area2D" parent="ApprenticeMageTower"]
+collision_layer = 2
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ApprenticeMageTower/Area2D"]
+light_mask = 2
+visibility_layer = 2
+position = Vector2(0, 8)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_6qwjv")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -1)
+shape = SubResource("CircleShape2D_mb5jq")
+disabled = true
+
+[node name="PlacementAreaIndicator" type="Panel" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -13.0
+offset_top = -7.0
+offset_right = 23.0
+offset_bottom = 23.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_i1mea")
+
+[connection signal="body_entered" from="ApprenticeMageTower/Area2D" to="." method="_on_area_2d_body_entered"]
+[connection signal="body_exited" from="ApprenticeMageTower/Area2D" to="." method="_on_area_2d_body_exited"]

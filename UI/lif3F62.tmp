@@ -1,0 +1,29 @@
+[gd_scene load_steps=5 format=3 uid="uid://c647nwocfjxgr"]
+
+[ext_resource type="Texture2D" uid="uid://7fcgmvhgqowo" path="res://Sprites/life_orb.png" id="1_5qfar"]
+[ext_resource type="Script" path="res://UI/LifeOrb.gd" id="2_t12ch"]
+[ext_resource type="FontFile" uid="uid://cv2ux2mgk6ig5" path="res://Fonts/cc.yal.6w4.otf" id="3_dnvmr"]
+[ext_resource type="Texture2D" uid="uid://bcktag2dgjej4" path="res://Sprites/mana_star_mini.png" id="4_c7pgm"]
+
+[node name="LifeOrb" type="TextureRect"]
+offset_right = 48.0
+offset_bottom = 48.0
+pivot_offset = Vector2(24, 24)
+texture = ExtResource("1_5qfar")
+script = ExtResource("2_t12ch")
+mana_cost = null
+
+[node name="ManaCostLabel" type="Label" parent="."]
+layout_mode = 0
+offset_left = 24.0
+offset_top = 48.0
+offset_right = 64.0
+offset_bottom = 71.0
+theme_override_fonts/font = ExtResource("3_dnvmr")
+text = "50"
+
+[node name="ManaStarMini" type="Sprite2D" parent="ManaCostLabel"]
+position = Vector2(-4, 6)
+texture = ExtResource("4_c7pgm")
+
+[connection signal="gui_input" from="." to="." method="_on_gui_input"]

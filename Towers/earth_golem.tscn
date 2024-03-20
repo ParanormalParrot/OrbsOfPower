@@ -1,0 +1,22 @@
+[gd_scene load_steps=5 format=3 uid="uid://mk7xvbq6wgqr"]
+
+[ext_resource type="Script" path="res://Towers/earth_golem.gd" id="1_nayjy"]
+[ext_resource type="PackedScene" uid="uid://b5r8dv4q5mnkx" path="res://Projectiles/earthquake.tscn" id="2_elp07"]
+[ext_resource type="Texture2D" uid="uid://vyfvtskqlh2f" path="res://Sprites/earth_golem.png" id="2_es6pg"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_e5mcx"]
+
+[node name="EarthGolem" type="CharacterBody2D"]
+script = ExtResource("1_nayjy")
+earthquakePrefab = ExtResource("2_elp07")
+attackDamage = 30
+attackRechargeTime = 3
+max_health = 100
+
+[node name="Sprite" type="Sprite2D" parent="."]
+position = Vector2(0, -21)
+texture = ExtResource("2_es6pg")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_e5mcx")
+disabled = true

@@ -1,0 +1,30 @@
+[gd_scene load_steps=5 format=3 uid="uid://bwl2c0qgkmtrk"]
+
+[ext_resource type="Script" path="res://Projectiles/TowerProjectile.gd" id="1_1xuwc"]
+[ext_resource type="Texture2D" uid="uid://cv8jx7up8ylud" path="res://Sprites/fireball.png" id="2_yyh1c"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_b1ua3"]
+radius = 3.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_4qdgx"]
+radius = 3.0
+
+[node name="Fireball" type="CharacterBody2D"]
+script = ExtResource("1_1xuwc")
+
+[node name="Fireball" type="Sprite2D" parent="."]
+position = Vector2(1, -1)
+texture = ExtResource("2_yyh1c")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(1, 0)
+shape = SubResource("CircleShape2D_b1ua3")
+disabled = true
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_layer = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("CircleShape2D_4qdgx")
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
