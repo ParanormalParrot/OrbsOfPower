@@ -1,8 +1,5 @@
 extends Node2D
 
-@onready var path = preload("res://level1_path.tscn")
-@onready var footman = preload("res://Enemies/footman.tscn")
-
 const EnemySequence = preload("res://Resources/enemy_sequence.gd")
 const Wave = preload("res://Resources/wave.gd")
 @export var enemies: Dictionary
