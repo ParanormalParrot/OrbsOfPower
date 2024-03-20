@@ -1,4 +1,4 @@
-[gd_scene format=3 uid="uid://dh63pib4snu1y"]
+[gd_scene format=3 uid="uid://fu3f2ka5iass"]
 
 [node name="MindBeam" type="Line2D"]
 modulate = Color(10, 1, 1, 1)
