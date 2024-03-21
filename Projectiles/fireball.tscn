@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=3 uid="uid://bwl2c0qgkmtrk"]
 
-[ext_resource type="Script" path="res://Projectiles/TowerProjectile.gd" id="1_1xuwc"]
+[ext_resource type="Script" path="res://Projectiles/tower_projectile.gd" id="1_1xuwc"]
 [ext_resource type="Texture2D" uid="uid://cv8jx7up8ylud" path="res://Sprites/fireball.png" id="2_yyh1c"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_b1ua3"]

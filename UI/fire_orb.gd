@@ -1,5 +1,6 @@
 extends TextureRect
 
+class_name FireOrb
 
 @onready var dragObjectPrefab = preload("res://UI/fire_orb_drag_object.tscn")
 
@@ -9,15 +10,20 @@ extends TextureRect
 
 @onready var magmaMageTowerPrefab = preload("res://Towers/magma_mage_tower.tscn")
 
-
 @onready var fireAlchemistPrefab = preload("res://Towers/fire_alchemist_tower.tscn")
-
 
 @export var gameController: Node2D
 @export var mana_cost = 100
+
 func _ready():
 	$ManaCostLabel.text = str(mana_cost)
-
+	
+func _process(delta):
+	if gameController.mana >= mana_cost:
+		$ManaCostLabel.set("theme_override_colors/font_color",Color.WHITE)
+	else:
+		$ManaCostLabel.set("theme_override_colors/font_color",Color.RED)
+	
 func _on_gui_input(event):
 	if event is InputEventMouseButton and event.button_mask == 1:
 		var dragObject = dragObjectPrefab.instantiate()

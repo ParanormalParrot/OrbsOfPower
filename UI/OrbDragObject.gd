@@ -1,5 +1,7 @@
 extends Node2D
 
+class_name OrbDragObject
+
 var overlappedTower = null
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -16,8 +18,6 @@ func _on_area_2d_body_entered(body):
 		overlappedTower = body;
 		
 		
-
-
 func _on_area_2d_body_exited(body):
 	if body == overlappedTower:
 		overlappedTower = null

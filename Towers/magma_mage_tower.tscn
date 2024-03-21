@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://cb5o6osaq1wra"]
+[gd_scene load_steps=25 format=3 uid="uid://cb5o6osaq1wra"]
 
 [ext_resource type="Script" path="res://Towers/earth_mage_tower.gd" id="1_n1tv2"]
 [ext_resource type="PackedScene" uid="uid://cg55wwpv46cdr" path="res://Projectiles/magma_rift.tscn" id="2_fueif"]
@@ -6,6 +6,9 @@
 [ext_resource type="Texture2D" uid="uid://doreif5jbnh2c" path="res://Sprites/magma_mage.png" id="4_6op31"]
 [ext_resource type="Texture2D" uid="uid://bcc15fn21kokt" path="res://Sprites/magma_banner.png" id="5_ijqu8"]
 [ext_resource type="PackedScene" uid="uid://cpafvfljhg0um" path="res://UI/tower_ui.tscn" id="6_gpliu"]
+[ext_resource type="Texture2D" uid="uid://yvx42dmclva0" path="res://Sprites/magma_mage_attack.png" id="7_1sfxt"]
+[ext_resource type="Texture2D" uid="uid://nh1khp4e36es" path="res://Sprites/magma_mage_behind.png" id="8_3v84t"]
+[ext_resource type="Texture2D" uid="uid://d1xr2pbjqw4av" path="res://Sprites/magma_mage_attack_behind.png" id="9_yiae8"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_umy21"]
 radius = 75.0
@@ -15,19 +18,222 @@ height = 200.0
 radius = 15.0
 height = 45.0
 
-[node name="EarthMageTower" type="StaticBody2D"]
+[sub_resource type="Animation" id="Animation_4mivp"]
+resource_name = "attack"
+length = 0.3
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("EarthMage:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("7_1sfxt")]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("EarthMage:hframes")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [3]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("EarthMage:frame")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [0, 1, 2]
+}
+
+[sub_resource type="Animation" id="Animation_hepev"]
+resource_name = "attack_behind"
+length = 0.3
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("EarthMage:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("9_yiae8")]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("EarthMage:hframes")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.0001),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [3, 3]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("EarthMage:frame")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [0, 1, 2]
+}
+
+[sub_resource type="Animation" id="Animation_bo1yl"]
+resource_name = "idle"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("EarthMage:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("4_6op31")]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("EarthMage:hframes")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [1]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("EarthMage:frame")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_b0sb2"]
+resource_name = "idle_behind"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("EarthMage:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("8_3v84t")]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("EarthMage:hframes")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [1]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("EarthMage:frame")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_jimlm"]
+_data = {
+"attack": SubResource("Animation_4mivp"),
+"attack_behind": SubResource("Animation_hepev"),
+"idle": SubResource("Animation_bo1yl"),
+"idle_behind": SubResource("Animation_b0sb2")
+}
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_r6ai6"]
+animation = &"attack"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_evbl7"]
+animation = &"attack_behind"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_qsbr0"]
+animation = &"idle"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_h4vlx"]
+animation = &"idle_behind"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_t07gn"]
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_ejkeq"]
+switch_mode = 2
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_8qb06"]
+switch_mode = 2
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_kjp51"]
+states/attack/node = SubResource("AnimationNodeAnimation_r6ai6")
+states/attack/position = Vector2(626, 75)
+states/attack_behind/node = SubResource("AnimationNodeAnimation_evbl7")
+states/attack_behind/position = Vector2(704, 208)
+states/idle/node = SubResource("AnimationNodeAnimation_qsbr0")
+states/idle/position = Vector2(404, 120)
+states/idle_behind/node = SubResource("AnimationNodeAnimation_h4vlx")
+states/idle_behind/position = Vector2(481, 282)
+transitions = ["Start", "idle", SubResource("AnimationNodeStateMachineTransition_t07gn"), "attack", "idle", SubResource("AnimationNodeStateMachineTransition_ejkeq"), "attack_behind", "idle_behind", SubResource("AnimationNodeStateMachineTransition_8qb06")]
+
+[node name="EarthMageTower" type="StaticBody2D" node_paths=PackedStringArray("animation_tree")]
 script = ExtResource("1_n1tv2")
 projectileAsset = ExtResource("2_fueif")
 projectileDamage = 30
 recharge_time = 3.0
+animation_tree = NodePath("AnimationTree")
 
 [node name="ApprenticeMageTower" type="Sprite2D" parent="."]
-position = Vector2(0, -2)
+position = Vector2(0, 14)
 texture = ExtResource("3_mfm4q")
+offset = Vector2(0, -16)
 
-[node name="EarthMage" type="Sprite2D" parent="ApprenticeMageTower"]
-position = Vector2(0, -38)
+[node name="EarthMage" type="Sprite2D" parent="."]
+position = Vector2(0, -9)
 texture = ExtResource("4_6op31")
+offset = Vector2(0, -32)
 
 [node name="ShotPoint" type="Marker2D" parent="."]
 position = Vector2(20, -29)
@@ -58,6 +264,18 @@ rotation = 1.5708
 shape = SubResource("CapsuleShape2D_31gtt")
 
 [node name="TowerUI" parent="." instance=ExtResource("6_gpliu")]
+
+[node name="AnimationTree" type="AnimationTree" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_jimlm")
+}
+tree_root = SubResource("AnimationNodeStateMachine_kjp51")
+anim_player = NodePath("../AnimationPlayer")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_jimlm")
+}
 
 [connection signal="area_entered" from="Range" to="." method="_on_range_area_entered"]
 [connection signal="body_entered" from="Range" to="." method="_on_range_body_entered"]

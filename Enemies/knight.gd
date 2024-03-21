@@ -1,6 +1,6 @@
 extends Enemy
 
-
+class_name Knight
 	
 func slow_down(time, mult):
 	slownessTime = time 

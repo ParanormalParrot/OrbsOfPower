@@ -1,15 +1,57 @@
-[gd_scene load_steps=7 format=3 uid="uid://bbnjskngw8jjo"]
+[gd_scene load_steps=10 format=3 uid="uid://bbnjskngw8jjo"]
 
 [ext_resource type="Script" path="res://Enemies/knight.gd" id="1_frbs5"]
 [ext_resource type="Texture2D" uid="uid://bh02n6a7qw185" path="res://Sprites/knight-Sheet.png" id="3_dcf4x"]
 [ext_resource type="Texture2D" uid="uid://ccjx8k7gcxy4f" path="res://Sprites/hypnosis_indicator.png" id="3_jgvpp"]
+[ext_resource type="Texture2D" uid="uid://cchrskehiflhf" path="res://Sprites/knight_attack-Sheet.png" id="4_tlr8a"]
+[ext_resource type="Texture2D" uid="uid://y6ssecqafom8" path="res://Sprites/stalled_indicator.png" id="5_a4he3"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_h34ok"]
 radius = 7.0
 height = 42.0
 
+[sub_resource type="Animation" id="Animation_4g3ik"]
+resource_name = "attack"
+length = 0.3
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("4_tlr8a")]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [0, 1, 2]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".:hframes")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(),
+"transitions": PackedFloat32Array(),
+"update": 1,
+"values": []
+}
+
 [sub_resource type="Animation" id="Animation_ewkm3"]
-resource_name = "footman_walk"
+resource_name = "walk"
 length = 0.4
 loop_mode = 1
 tracks/0/type = "value"
@@ -24,18 +66,46 @@ tracks/0/keys = {
 "update": 1,
 "values": [0, 1, 2, 3]
 }
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:texture")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("3_dcf4x")]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".:hframes")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [4]
+}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_w0qrt"]
 _data = {
-"footman_walk": SubResource("Animation_ewkm3")
+"attack": SubResource("Animation_4g3ik"),
+"walk": SubResource("Animation_ewkm3")
 }
 
 [node name="CharacterBody2D" type="CharacterBody2D" groups=["Enemy"]]
 script = ExtResource("1_frbs5")
 speed = 20
-maxHealth = 100
+maxHealth = 300
+attack_damage = 100
 heartCost = 3
 manaReward = 150
+PhysicalDefense = 0.7
+FireDefense = 0.3
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(-2, -31)
@@ -51,14 +121,20 @@ texture = ExtResource("3_jgvpp")
 [node name="Footman-sheet" type="Sprite2D" parent="."]
 z_as_relative = false
 y_sort_enabled = true
-texture = ExtResource("3_dcf4x")
+texture = ExtResource("4_tlr8a")
 offset = Vector2(0, -40)
-hframes = 4
+hframes = 3
+frame = 2
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="Footman-sheet"]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+root_node = NodePath("../Footman-sheet")
 libraries = {
 "": SubResource("AnimationLibrary_w0qrt")
 }
-autoplay = "footman_walk"
-speed_scale = 0.5
+autoplay = "walk"
+speed_scale = 0.25
 movie_quit_on_finish = true
+
+[node name="StalledIndicator" type="Sprite2D" parent="."]
+position = Vector2(-2, -59)
+texture = ExtResource("5_a4he3")

@@ -1,4 +1,5 @@
 extends Resource
+
 class_name EnemySequence
 
 @export var enemy: PackedScene

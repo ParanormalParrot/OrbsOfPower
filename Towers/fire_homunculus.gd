@@ -1,5 +1,6 @@
 extends Homunculus
 
+class_name FireHomunculus
 
 @export var fire_attack_damage = 10
 

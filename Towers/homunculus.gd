@@ -32,10 +32,14 @@ func _process(delta):
 			if opponent == null:
 				opponent = enemies[enemies.size() - 1]
 				for i in enemies:
-					if i.get_parent().get_progress() > opponent.get_parent().get_progress():
-						opponent = i;
-				opponent.opponent = self
-				opponent.isStalled = true
+					if i != null:
+						if i.get_parent().get_progress() > opponent.get_parent().get_progress():
+							opponent = i;
+				if !opponent.isStalled:
+					opponent.opponent = self
+					opponent.isStalled = true
+				else:
+					opponent = null
 			else:
 				var destination = Vector2(opponent.global_position.x + 20, opponent.global_position.y)
 				var direction = global_position.direction_to(destination)
@@ -46,6 +50,7 @@ func _process(delta):
 				move_and_slide()
 				if global_position == destination:
 					isFighting = true
+					opponent.isFighting = true
 				
 		else:
 			if opponent == null:

@@ -1,0 +1,58 @@
+[gd_scene load_steps=8 format=3 uid="uid://c13wk781qy235"]
+
+[ext_resource type="Script" path="res://Enemies/blood_mage.gd" id="1_j1n6o"]
+[ext_resource type="Texture2D" uid="uid://ccjx8k7gcxy4f" path="res://Sprites/hypnosis_indicator.png" id="3_5xc01"]
+[ext_resource type="Texture2D" uid="uid://y6ssecqafom8" path="res://Sprites/stalled_indicator.png" id="4_21cq1"]
+[ext_resource type="Texture2D" uid="uid://ur2f231bt30q" path="res://Sprites/blood_mage.png" id="4_cg03i"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_vqmay"]
+radius = 1.25602
+height = 15.1156
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_1uxeo"]
+radius = 20.0
+height = 48.0
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_7e0u7"]
+radius = 34.0
+height = 78.0
+
+[node name="BloodMage" type="CharacterBody2D" groups=["Enemy"]]
+collision_mask = 0
+script = ExtResource("1_j1n6o")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -21)
+scale = Vector2(-7.96166, 2.77858)
+shape = SubResource("CapsuleShape2D_vqmay")
+
+[node name="Target" type="Marker2D" parent="."]
+position = Vector2(2, -37)
+
+[node name="Sight" type="Area2D" parent="."]
+rotation = 0.0201156
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Sight"]
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_1uxeo")
+
+[node name="HypnosisIndicator" type="Sprite2D" parent="."]
+position = Vector2(0, -51)
+texture = ExtResource("3_5xc01")
+
+[node name="StalledIndicator" type="Sprite2D" parent="."]
+position = Vector2(0, -51)
+texture = ExtResource("4_21cq1")
+
+[node name="BloodMage" type="Sprite2D" parent="."]
+position = Vector2(0, -24)
+texture = ExtResource("4_cg03i")
+
+[node name="HealingRange" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HealingRange"]
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_7e0u7")
+
+[connection signal="body_entered" from="Sight" to="." method="_on_sight_body_entered"]
+[connection signal="body_exited" from="Sight" to="." method="_on_sight_body_exited"]

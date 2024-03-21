@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://cg55wwpv46cdr"]
 
-[ext_resource type="Script" path="res://Projectiles/Earthquake.gd" id="1_71c5h"]
+[ext_resource type="Script" path="res://Projectiles/earthquake.gd" id="1_mfvwx"]
 [ext_resource type="Texture2D" uid="uid://dnw4s83dhbib7" path="res://Sprites/magma_rift.png" id="2_p1cwc"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_pdoia"]
@@ -9,7 +9,7 @@ height = 44.0
 
 [node name="Node2D" type="Node2D"]
 z_index = -1
-script = ExtResource("1_71c5h")
+script = ExtResource("1_mfvwx")
 
 [node name="Sprite" type="Sprite2D" parent="."]
 texture = ExtResource("2_p1cwc")

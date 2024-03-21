@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=3 uid="uid://6o2v5sanfoi0"]
 
 [ext_resource type="Texture2D" uid="uid://bhrkxlvvnajl" path="res://Sprites/earth_orb.png" id="1_pj5sf"]
-[ext_resource type="Script" path="res://UI/EarthOrb.gd" id="2_nt3r5"]
+[ext_resource type="Script" path="res://UI/earth_orb.gd" id="2_nt3r5"]
 [ext_resource type="FontFile" uid="uid://cv2ux2mgk6ig5" path="res://Fonts/cc.yal.6w4.otf" id="3_6biip"]
 [ext_resource type="Texture2D" uid="uid://bcktag2dgjej4" path="res://Sprites/mana_star_mini.png" id="4_h8tbd"]
 

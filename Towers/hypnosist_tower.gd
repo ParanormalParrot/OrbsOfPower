@@ -1,11 +1,12 @@
 extends AttackTower
 
+class_name HypnosistTower
+
 @export var hypnosis_time= 5
 
 var controlled_enemy
 
 func attack():
-
 	if enemies != []:
 		target = enemies[0];
 		for i in enemies:

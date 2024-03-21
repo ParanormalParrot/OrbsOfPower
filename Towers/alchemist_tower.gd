@@ -1,4 +1,6 @@
 extends StaticBody2D
+
+class_name AlchemistTower
 var enemies = []
 var homunculi = []
 @export var homunculusAsset: PackedScene
@@ -32,7 +34,8 @@ func _on_aggro_range_body_entered(body):
 	if body.is_in_group("Enemy"):
 		enemies.append(body)
 		for i in homunculi:
-			i.enemies.append(body)
+			if i != null:
+				i.enemies.append(body)
 
 
 
@@ -40,7 +43,8 @@ func _on_aggro_range_body_exited(body):
 	if body.is_in_group("Enemy"):
 		enemies.erase(body)
 		for i in homunculi:
-			i.enemies.erase(body)
+			if i != null:
+				i.enemies.erase(body)
 
 
 

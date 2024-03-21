@@ -1,5 +1,7 @@
 extends Node2D
 
+class_name WaveController
+
 const EnemySequence = preload("res://Resources/enemy_sequence.gd")
 const Wave = preload("res://Resources/wave.gd")
 @export var enemies: Dictionary

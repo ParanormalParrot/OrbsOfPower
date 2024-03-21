@@ -1,4 +1,5 @@
 extends StaticBody2D
+
 class_name AttackTower
 
 @export var projectileAsset = preload("res://Projectiles/spark.tscn")
@@ -11,7 +12,8 @@ var enemies = []
 
 var target
 var isAttackCharged = false
-# Called when the node enters the scene tree for the first time.
+
+@export var animation_tree = AnimationTree
 
 func _ready():
 	$TowerUI.visible = false

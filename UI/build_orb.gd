@@ -1,5 +1,7 @@
 extends TextureRect
 
+class_name BuildOrb
+
 @onready var towerPrefab = preload("res://Towers/apprentice_tower.tscn")
 
 @onready var dragObjectPrefab = preload("res://UI/tower_drag_object.tscn")

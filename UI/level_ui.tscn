@@ -1,0 +1,353 @@
+[gd_scene load_steps=24 format=3 uid="uid://634w27twweus"]
+
+[ext_resource type="Texture2D" uid="uid://dqjmdk06sbr41" path="res://Sprites/heart.png" id="1_6wc0o"]
+[ext_resource type="FontFile" uid="uid://bmo7ru736mqg5" path="res://Fonts/NicerNightie.ttf" id="2_40b4s"]
+[ext_resource type="Texture2D" uid="uid://fxj0pt2h7jag" path="res://Sprites/mana_star.png" id="3_5u8ub"]
+[ext_resource type="FontFile" uid="uid://cv2ux2mgk6ig5" path="res://Fonts/cc.yal.6w4.otf" id="4_tq70n"]
+[ext_resource type="FontFile" uid="uid://buog1vofqqcwn" path="res://Fonts/Jacquard12-Regular.ttf" id="5_yfx67"]
+[ext_resource type="Script" path="res://Scenes/start_wave_button.gd" id="6_l3huk"]
+[ext_resource type="Script" path="res://Scenes/defeat_menu.gd" id="7_n32oh"]
+[ext_resource type="Script" path="res://Scenes/retry_button.gd" id="8_6ce46"]
+[ext_resource type="Script" path="res://Scenes/victory_menu.gd" id="9_20htb"]
+[ext_resource type="PackedScene" uid="uid://vyxtluyktwo6" path="res://UI/build_orb.tscn" id="10_stwan"]
+[ext_resource type="PackedScene" uid="uid://6m0lbew8qlb8" path="res://UI/fire_orb.tscn" id="11_a0uar"]
+[ext_resource type="PackedScene" uid="uid://6o2v5sanfoi0" path="res://UI/earth_orb.tscn" id="12_rsr8t"]
+[ext_resource type="PackedScene" uid="uid://dcm67wicodyno" path="res://UI/psychic_orb.tscn" id="13_31dqy"]
+[ext_resource type="PackedScene" uid="uid://c647nwocfjxgr" path="res://UI/life_orb.tscn" id="14_o3cau"]
+[ext_resource type="Texture2D" uid="uid://c5ndt3ac6hv2c" path="res://Sprites/pause_icon.png" id="15_nr2si"]
+[ext_resource type="Script" path="res://Scenes/pause_button.gd" id="16_u7k8e"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8a1o5"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(1, 1, 1, 1)
+shadow_size = 1
+
+[sub_resource type="Theme" id="Theme_1msmx"]
+
+[sub_resource type="Theme" id="Theme_og7wx"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_v5pco"]
+bg_color = Color(0, 0, 0, 0.784314)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(1, 1, 1, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_lwl2g"]
+content_margin_left = 4.0
+content_margin_top = 4.0
+content_margin_right = 4.0
+content_margin_bottom = 4.0
+bg_color = Color(0, 0, 0, 0.784314)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_vw8y4"]
+content_margin_left = 4.0
+content_margin_top = 4.0
+content_margin_right = 4.0
+content_margin_bottom = 4.0
+bg_color = Color(0, 0, 0, 0.392157)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+
+[sub_resource type="Theme" id="Theme_3lytf"]
+
+[node name="LevelUI" type="CanvasLayer"]
+process_mode = 3
+
+[node name="Heart" type="Sprite2D" parent="."]
+position = Vector2(13, 14)
+texture = ExtResource("1_6wc0o")
+
+[node name="HeartCountLabel" type="Label" parent="Heart"]
+offset_left = 10.0
+offset_top = -13.0
+offset_right = 50.0
+offset_bottom = 11.0
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_outline_size = 0
+theme_override_fonts/font = ExtResource("2_40b4s")
+theme_override_font_sizes/font_size = 24
+text = "20"
+
+[node name="ManaStar" type="Sprite2D" parent="."]
+position = Vector2(60, 13)
+texture = ExtResource("3_5u8ub")
+
+[node name="ManaCountLabel" type="Label" parent="ManaStar"]
+offset_left = 11.0
+offset_top = -12.0
+offset_right = 51.0
+offset_bottom = 12.0
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_outline_size = 0
+theme_override_fonts/font = ExtResource("2_40b4s")
+theme_override_font_sizes/font_size = 24
+text = "20"
+metadata/_edit_use_anchors_ = true
+
+[node name="WaveCountLabel" type="Label" parent="."]
+anchors_preset = -1
+anchor_left = 0.925
+anchor_right = 0.925
+offset_left = -469.0
+offset_top = 1.0
+offset_right = -429.0
+offset_bottom = 25.0
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_outline_size = 0
+theme_override_fonts/font = ExtResource("2_40b4s")
+theme_override_font_sizes/font_size = 24
+text = "wave 0/5"
+metadata/_edit_use_anchors_ = true
+
+[node name="TimeLabel" type="Label" parent="."]
+visible = false
+offset_left = 123.0
+offset_top = 20.0
+offset_right = 163.0
+offset_bottom = 43.0
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_outline_size = 0
+theme_override_fonts/font = ExtResource("4_tq70n")
+text = "time: 10"
+
+[node name="StartWaveButton" type="Button" parent="."]
+offset_left = 123.0
+offset_top = 23.0
+offset_right = 167.0
+offset_bottom = 47.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_constants/outline_size = 0
+theme_override_fonts/font = ExtResource("5_yfx67")
+theme_override_font_sizes/font_size = 21
+theme_override_styles/normal = SubResource("StyleBoxFlat_8a1o5")
+text = "start
+"
+script = ExtResource("6_l3huk")
+
+[node name="DefeatMenu" type="CenterContainer" parent="."]
+visible = false
+offset_right = 640.0
+offset_bottom = 360.0
+theme = SubResource("Theme_1msmx")
+script = ExtResource("7_n32oh")
+
+[node name="Panel" type="Panel" parent="DefeatMenu"]
+custom_minimum_size = Vector2(300, 200)
+layout_mode = 2
+theme = SubResource("Theme_og7wx")
+theme_override_styles/panel = SubResource("StyleBoxFlat_v5pco")
+
+[node name="MarginContainer" type="MarginContainer" parent="DefeatMenu/Panel"]
+layout_mode = 0
+offset_left = 45.0
+offset_top = 38.0
+offset_right = 259.0
+offset_bottom = 164.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="DefeatMenu/Panel/MarginContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="DefeatMenu/Panel/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_40b4s")
+theme_override_font_sizes/font_size = 48
+text = "Defeat"
+horizontal_alignment = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="DefeatMenu/Panel/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+
+[node name="TryAgainButton" type="Button" parent="DefeatMenu/Panel/MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_40b4s")
+theme_override_font_sizes/font_size = 24
+theme_override_styles/normal = SubResource("StyleBoxFlat_lwl2g")
+text = "Retry"
+script = ExtResource("8_6ce46")
+
+[node name="ExitButton" type="Button" parent="DefeatMenu/Panel/MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_40b4s")
+theme_override_font_sizes/font_size = 24
+theme_override_styles/normal = SubResource("StyleBoxFlat_vw8y4")
+text = "Quit
+"
+
+[node name="VictoryMenu" type="CenterContainer" parent="."]
+visible = false
+offset_right = 640.0
+offset_bottom = 360.0
+script = ExtResource("9_20htb")
+
+[node name="Panel" type="Panel" parent="VictoryMenu"]
+custom_minimum_size = Vector2(300, 200)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_lwl2g")
+
+[node name="MarginContainer" type="MarginContainer" parent="VictoryMenu/Panel"]
+layout_mode = 0
+offset_left = 45.0
+offset_top = 38.0
+offset_right = 259.0
+offset_bottom = 164.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VictoryMenu/Panel/MarginContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="VictoryMenu/Panel/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_40b4s")
+theme_override_font_sizes/font_size = 48
+text = "Victory"
+horizontal_alignment = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VictoryMenu/Panel/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+
+[node name="ExitButton" type="Button" parent="VictoryMenu/Panel/MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_40b4s")
+theme_override_font_sizes/font_size = 24
+theme_override_styles/normal = SubResource("StyleBoxFlat_lwl2g")
+text = "Quit
+"
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -320.0
+offset_top = -68.0
+offset_right = 321.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_constants/margin_left = 0
+theme_override_constants/margin_right = 0
+theme_override_constants/margin_bottom = 5
+
+[node name="CenterContainer" type="CenterContainer" parent="MarginContainer"]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/CenterContainer"]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="BuildOrb" parent="MarginContainer/CenterContainer/HBoxContainer" instance=ExtResource("10_stwan")]
+layout_mode = 2
+theme = SubResource("Theme_3lytf")
+stretch_mode = 2
+
+[node name="FireOrb" parent="MarginContainer/CenterContainer/HBoxContainer" instance=ExtResource("11_a0uar")]
+layout_mode = 2
+stretch_mode = 2
+
+[node name="EarthOrb" parent="MarginContainer/CenterContainer/HBoxContainer" instance=ExtResource("12_rsr8t")]
+layout_mode = 2
+stretch_mode = 2
+
+[node name="PsychicOrb" parent="MarginContainer/CenterContainer/HBoxContainer" instance=ExtResource("13_31dqy")]
+layout_mode = 2
+stretch_mode = 2
+
+[node name="LifeOrb" parent="MarginContainer/CenterContainer/HBoxContainer" instance=ExtResource("14_o3cau")]
+layout_mode = 2
+stretch_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="."]
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="PauseButton" type="Button" parent="." node_paths=PackedStringArray("pause_menu")]
+offset_left = 616.0
+offset_right = 640.0
+offset_bottom = 24.0
+icon = ExtResource("15_nr2si")
+script = ExtResource("16_u7k8e")
+pause_menu = NodePath("../PauseMenu")
+
+[node name="PauseMenu" type="CenterContainer" parent="."]
+visible = false
+offset_right = 640.0
+offset_bottom = 360.0
+script = ExtResource("9_20htb")
+
+[node name="Panel" type="Panel" parent="PauseMenu"]
+custom_minimum_size = Vector2(300, 200)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_lwl2g")
+
+[node name="MarginContainer" type="MarginContainer" parent="PauseMenu/Panel"]
+layout_mode = 0
+offset_left = 45.0
+offset_top = 38.0
+offset_right = 259.0
+offset_bottom = 164.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PauseMenu/Panel/MarginContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="PauseMenu/Panel/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_40b4s")
+theme_override_font_sizes/font_size = 48
+text = "Pause"
+horizontal_alignment = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="PauseMenu/Panel/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+
+[node name="ResumeButton" type="Button" parent="PauseMenu/Panel/MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_40b4s")
+theme_override_font_sizes/font_size = 24
+theme_override_styles/normal = SubResource("StyleBoxFlat_lwl2g")
+text = "Resume"
+
+[node name="RetryButton" type="Button" parent="PauseMenu/Panel/MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_40b4s")
+theme_override_font_sizes/font_size = 24
+theme_override_styles/normal = SubResource("StyleBoxFlat_lwl2g")
+text = "Restart"
+
+[node name="ExitButton" type="Button" parent="PauseMenu/Panel/MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_40b4s")
+theme_override_font_sizes/font_size = 24
+theme_override_styles/normal = SubResource("StyleBoxFlat_lwl2g")
+text = "Quit
+"
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PauseMenu/Panel/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[connection signal="pressed" from="StartWaveButton" to="StartWaveButton" method="_on_pressed"]
+[connection signal="pressed" from="DefeatMenu/Panel/MarginContainer/VBoxContainer/HBoxContainer/TryAgainButton" to="DefeatMenu" method="_on_try_again_button_pressed"]
+[connection signal="pressed" from="DefeatMenu/Panel/MarginContainer/VBoxContainer/HBoxContainer/TryAgainButton" to="DefeatMenu/Panel/MarginContainer/VBoxContainer/HBoxContainer/TryAgainButton" method="_on_pressed"]
+[connection signal="pressed" from="DefeatMenu/Panel/MarginContainer/VBoxContainer/HBoxContainer/ExitButton" to="DefeatMenu" method="_on_exit_button_pressed"]
+[connection signal="pressed" from="VictoryMenu/Panel/MarginContainer/VBoxContainer/HBoxContainer/ExitButton" to="VictoryMenu" method="_on_exit_button_pressed"]
+[connection signal="pressed" from="VictoryMenu/Panel/MarginContainer/VBoxContainer/HBoxContainer/ExitButton" to="VictoryMenu/Panel/MarginContainer/VBoxContainer/HBoxContainer/ExitButton" method="_on_pressed"]
+[connection signal="pressed" from="PauseButton" to="PauseButton" method="_on_pressed"]
+[connection signal="pressed" from="PauseMenu/Panel/MarginContainer/VBoxContainer/HBoxContainer/ResumeButton" to="PauseMenu" method="_on_resume_button_pressed"]
+[connection signal="pressed" from="PauseMenu/Panel/MarginContainer/VBoxContainer/HBoxContainer/ResumeButton" to="PauseMenu/Panel/MarginContainer/VBoxContainer/HBoxContainer/ResumeButton" method="_on_pressed"]
+[connection signal="pressed" from="PauseMenu/Panel/MarginContainer/VBoxContainer/HBoxContainer/RetryButton" to="PauseMenu" method="_on_retry_button_pressed"]
+[connection signal="pressed" from="PauseMenu/Panel/MarginContainer/VBoxContainer/HBoxContainer/RetryButton" to="PauseMenu/Panel/MarginContainer/VBoxContainer/HBoxContainer/RetryButton" method="_on_pressed"]
+[connection signal="pressed" from="PauseMenu/Panel/MarginContainer/VBoxContainer/HBoxContainer/ExitButton" to="PauseMenu" method="_on_exit_button_pressed"]
+[connection signal="pressed" from="PauseMenu/Panel/MarginContainer/VBoxContainer/HBoxContainer/ExitButton" to="PauseMenu/Panel/MarginContainer/VBoxContainer/HBoxContainer/ExitButton" method="_on_pressed"]

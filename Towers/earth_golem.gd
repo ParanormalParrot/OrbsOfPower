@@ -1,5 +1,7 @@
 extends Homunculus
 
+class_name EarthGolem
+
 @export var earthquakePrefab: PackedScene
 @export var earthquake_damage = 10
 func attack():

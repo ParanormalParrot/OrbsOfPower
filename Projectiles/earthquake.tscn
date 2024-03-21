@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://b5r8dv4q5mnkx"]
 
+[ext_resource type="Script" path="res://Projectiles/earthquake.gd" id="1_ptn5p"]
 [ext_resource type="Texture2D" uid="uid://d4hvd7vyufckw" path="res://Sprites/earthquake.png" id="1_yq008"]
-[ext_resource type="Script" path="res://Projectiles/Earthquake.gd" id="2_sqaqf"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_dig7k"]
 radius = 23.0
@@ -9,7 +9,7 @@ height = 64.0
 
 [node name="Earthquake" type="Node2D"]
 z_index = -1
-script = ExtResource("2_sqaqf")
+script = ExtResource("1_ptn5p")
 lifetime = 1
 
 [node name="Area2D" type="Area2D" parent="."]

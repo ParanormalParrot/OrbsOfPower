@@ -1,5 +1,7 @@
 extends HSlider
 
+class_name VolumeSlider
+
 @export var bus_index = "Master"
 var save_path = "res://Config/volume.cfg"
 var config = ConfigFile.new()

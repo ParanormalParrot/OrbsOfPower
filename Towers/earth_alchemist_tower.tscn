@@ -1,12 +1,12 @@
 [gd_scene load_steps=14 format=3 uid="uid://cdo575p0nrj5r"]
 
-[ext_resource type="Script" path="res://Towers/AlchemistTower.gd" id="1_itn40"]
+[ext_resource type="Script" path="res://Towers/alchemist_tower.gd" id="1_6ktuo"]
 [ext_resource type="Texture2D" uid="uid://tg1qqpi86ncg" path="res://Sprites/apprentice_mage_tower.png" id="2_bmy71"]
 [ext_resource type="PackedScene" uid="uid://mk7xvbq6wgqr" path="res://Towers/earth_golem.tscn" id="2_ttpjc"]
 [ext_resource type="Texture2D" uid="uid://d3g3lvr6peka5" path="res://Sprites/earth_alchemist.png" id="3_n45la"]
 [ext_resource type="Texture2D" uid="uid://b3182t72cbbsw" path="res://Sprites/earth_alchemist_banner.png" id="4_rlaa0"]
-[ext_resource type="Script" path="res://Towers/Flag.gd" id="5_l73in"]
 [ext_resource type="Texture2D" uid="uid://dot8fms7d3cku" path="res://Sprites/flag.png" id="6_p3gwu"]
+[ext_resource type="Script" path="res://Towers/flag.gd" id="6_pt2x4"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_umy21"]
 radius = 75.0
@@ -38,7 +38,7 @@ height = 10.0
 [node name="AlchemistTower" type="StaticBody2D"]
 collision_layer = 3
 collision_mask = 3
-script = ExtResource("1_itn40")
+script = ExtResource("1_6ktuo")
 homunculusAsset = ExtResource("2_ttpjc")
 
 [node name="ApprenticeMageTower" type="Sprite2D" parent="."]
@@ -80,7 +80,7 @@ texture = ExtResource("4_rlaa0")
 [node name="Flag" type="CharacterBody2D" parent="." node_paths=PackedStringArray("range")]
 position = Vector2(0, 35)
 collision_layer = 8
-script = ExtResource("5_l73in")
+script = ExtResource("6_pt2x4")
 range = NodePath("../Range")
 
 [node name="FlagSprite" type="Sprite2D" parent="Flag"]

@@ -1,5 +1,7 @@
 extends Node2D
 
+class_name Earthquake
+
 var damage 
 @export var lifetime = 2
 @export var attack_time = 0.1
@@ -16,7 +18,7 @@ func _process(delta):
 func _on_area_2d_body_entered(body):
 	if body.is_in_group("Enemy"):
 		if attack_time > 0:
-			body.take_damage(damage)
+			body.take_damage(damage, Enums.DamageType.PHYSICAL)
 			body.stun(0.5)
 		
 		

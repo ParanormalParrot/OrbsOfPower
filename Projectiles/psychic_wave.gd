@@ -1,5 +1,7 @@
 extends CharacterBody2D
 
+class_name PsychicWave
+
 var damage 
 var target
 var targetPosition 

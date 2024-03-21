@@ -1,5 +1,7 @@
 extends StaticBody2D
 
+class_name MindScorcherTower
+
 var target_enemy = null
 var enemies = []
 var beam = Line2D.new()

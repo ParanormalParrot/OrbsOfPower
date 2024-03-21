@@ -1,6 +1,6 @@
 extends CenterContainer
 
-
+class_name DefeatMenu
 
 
 func _on_try_again_button_pressed():

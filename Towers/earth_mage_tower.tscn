@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://ccbe66y7d50vs"]
+[gd_scene load_steps=26 format=3 uid="uid://ccbe66y7d50vs"]
 
 [ext_resource type="Script" path="res://Towers/earth_mage_tower.gd" id="1_krw3w"]
 [ext_resource type="PackedScene" uid="uid://b5r8dv4q5mnkx" path="res://Projectiles/earthquake.tscn" id="2_hdhfh"]
@@ -6,6 +6,9 @@
 [ext_resource type="Texture2D" uid="uid://iikj4kbcbhuj" path="res://Sprites/earth_mage.png" id="4_jsy1f"]
 [ext_resource type="Texture2D" uid="uid://fsou0muvf8ob" path="res://Sprites/earth_banner.png" id="5_71uv0"]
 [ext_resource type="PackedScene" uid="uid://cpafvfljhg0um" path="res://UI/tower_ui.tscn" id="6_c4py2"]
+[ext_resource type="Texture2D" uid="uid://m3rce1irfnpj" path="res://Sprites/earth_mage_attack-Sheet.png" id="7_y0g1m"]
+[ext_resource type="Texture2D" uid="uid://brlawe2qiaw0h" path="res://Sprites/earth_mage_attack_behind-Sheet.png" id="8_nlafy"]
+[ext_resource type="Texture2D" uid="uid://btwelgcg7wopk" path="res://Sprites/earth_mage_behind.png" id="8_x1bnv"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_umy21"]
 radius = 75.0
@@ -19,11 +22,215 @@ height = 45.0
 radius = 15.0
 height = 45.0
 
-[node name="EarthMageTower" type="StaticBody2D" groups=["Tower"]]
+[sub_resource type="Animation" id="Animation_n1ian"]
+resource_name = "attack"
+length = 0.3
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ApprenticeMageTower/EarthMage:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("7_y0g1m")]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("ApprenticeMageTower/EarthMage:hframes")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [3]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("ApprenticeMageTower/EarthMage:frame")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [0, 1, 2]
+}
+
+[sub_resource type="Animation" id="Animation_mrv0a"]
+resource_name = "attack_behind"
+length = 0.3
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ApprenticeMageTower/EarthMage:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("8_nlafy")]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("ApprenticeMageTower/EarthMage:hframes")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [3]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("ApprenticeMageTower/EarthMage:frame")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [0, 1, 2]
+}
+
+[sub_resource type="Animation" id="Animation_pn4i5"]
+resource_name = "idle"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ApprenticeMageTower/EarthMage:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("4_jsy1f")]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("ApprenticeMageTower/EarthMage:hframes")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [1]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("ApprenticeMageTower/EarthMage:frame")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_2x6bt"]
+resource_name = "idle_behind"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ApprenticeMageTower/EarthMage:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("8_x1bnv")]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("ApprenticeMageTower/EarthMage:hframes")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [1]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("ApprenticeMageTower/EarthMage:frame")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_vx4g3"]
+_data = {
+"attack": SubResource("Animation_n1ian"),
+"attack_behind": SubResource("Animation_mrv0a"),
+"idle": SubResource("Animation_pn4i5"),
+"idle_behind": SubResource("Animation_2x6bt")
+}
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_r6ai6"]
+animation = &"attack"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_evbl7"]
+animation = &"attack_behind"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_qsbr0"]
+animation = &"idle"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_h4vlx"]
+animation = &"idle_behind"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_t07gn"]
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_ejkeq"]
+switch_mode = 2
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_8qb06"]
+switch_mode = 2
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_lkipi"]
+states/attack/node = SubResource("AnimationNodeAnimation_r6ai6")
+states/attack/position = Vector2(626, 75)
+states/attack_behind/node = SubResource("AnimationNodeAnimation_evbl7")
+states/attack_behind/position = Vector2(704, 208)
+states/idle/node = SubResource("AnimationNodeAnimation_qsbr0")
+states/idle/position = Vector2(404, 120)
+states/idle_behind/node = SubResource("AnimationNodeAnimation_h4vlx")
+states/idle_behind/position = Vector2(481, 282)
+transitions = ["Start", "idle", SubResource("AnimationNodeStateMachineTransition_t07gn"), "attack", "idle", SubResource("AnimationNodeStateMachineTransition_ejkeq"), "attack_behind", "idle_behind", SubResource("AnimationNodeStateMachineTransition_8qb06")]
+graph_offset = Vector2(23, 34)
+
+[node name="EarthMageTower" type="StaticBody2D" node_paths=PackedStringArray("animation_tree") groups=["Tower"]]
 script = ExtResource("1_krw3w")
 projectileAsset = ExtResource("2_hdhfh")
 projectileDamage = 15
 recharge_time = 3.0
+animation_tree = NodePath("AnimationTree")
 
 [node name="ApprenticeMageTower" type="Sprite2D" parent="."]
 position = Vector2(0, -2)
@@ -71,6 +278,18 @@ rotation = 1.5708
 shape = SubResource("CapsuleShape2D_t1vmd")
 
 [node name="TowerUI" parent="." instance=ExtResource("6_c4py2")]
+
+[node name="AnimationPlayer2" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_vx4g3")
+}
+
+[node name="AnimationTree" type="AnimationTree" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_vx4g3")
+}
+tree_root = SubResource("AnimationNodeStateMachine_lkipi")
+anim_player = NodePath("../AnimationPlayer2")
 
 [connection signal="area_entered" from="Range" to="." method="_on_range_area_entered"]
 [connection signal="body_entered" from="Range" to="." method="_on_range_body_entered"]

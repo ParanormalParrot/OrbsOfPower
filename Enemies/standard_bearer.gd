@@ -1,5 +1,7 @@
 extends Enemy
 
+class_name StandardBearer
+
 var allies: Array[Enemy] = []
 @export var buff_rate = 1
 var current_buff_rate = 0

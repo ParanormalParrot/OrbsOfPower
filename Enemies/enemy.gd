@@ -41,7 +41,17 @@ func _process(delta):
 		$StalledIndicator.visible = true
 		if opponent == null:
 			isStalled = false
-			$StalledIndicator.visible = false
+			isFighting = false
+			if $AnimationPlayer:
+				$AnimationPlayer.play("walk")
+			$StalledIndicator.visible = false	
+		if isFighting:
+			if $AnimationPlayer:
+				$AnimationPlayer.play("attack")
+			if current_attack_recharge_time <= 0:
+				attack()
+				current_attack_recharge_time = attack_recharge_time
+			current_attack_recharge_time-=delta
 	elif hypnosisTime > 0:
 		if !is_hypnotized:
 			isStalled = false
@@ -70,7 +80,7 @@ func _process(delta):
 						parent.set_progress(parent.get_progress() - (1 - slow_effect) * (1+speed_effect) * speed * delta)
 						
 				else:
-				
+					$AnimationPlayer.play("attack")
 					var destination = Vector2(opponent.global_position.x + 20, opponent.global_position.y)
 					var direction = global_position.direction_to(destination)
 					var distance = global_position.distance_to(destination)
@@ -149,6 +159,15 @@ func death():
 
 func attack():
 	opponent.take_damage(attack_damage)
+	
+
+func restore_health(restored_amount):
+	if currentHealth + restored_amount >= maxHealth:
+		currentHealth = maxHealth
+	else:
+		currentHealth += restored_amount
+		
+	
 
 func _on_sight_body_entered(body):
 	if body.is_in_group("Enemy") && body!= self:

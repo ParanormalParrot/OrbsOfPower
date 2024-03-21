@@ -1,6 +1,6 @@
 extends CharacterBody2D
-class_name TowerProjectile
 
+class_name TowerProjectile
 
 var target
 var targetPosition

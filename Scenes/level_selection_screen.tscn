@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://n0pgkdsnjg70"]
+[gd_scene load_steps=8 format=3 uid="uid://n0pgkdsnjg70"]
 
 [ext_resource type="FontFile" uid="uid://bmo7ru736mqg5" path="res://Fonts/NicerNightie.ttf" id="1_xfspf"]
 [ext_resource type="FontFile" uid="uid://dm8daxmtwnujv" path="res://Fonts/Passage 7 Basic.ttf" id="2_ef6e7"]
@@ -15,6 +15,16 @@ border_width_right = 1
 border_width_bottom = 1
 border_color = Color(1, 1, 1, 1)
 border_blend = true
+
+[sub_resource type="GDScript" id="GDScript_fe85m"]
+resource_name = "quit_to_menu_button"
+script/source = "extends Button
+
+class_name QuitToMenuButton
+
+func _on_pressed():
+	get_tree().change_scene_to_file(\"res://Scenes/main_menu.tscn\")
+"
 
 [node name="Control" type="Control"]
 layout_mode = 3
@@ -160,6 +170,9 @@ offset_bottom = 87.0
 theme_override_fonts/font = ExtResource("1_xfspf")
 theme_override_font_sizes/font_size = 24
 text = "Quit"
+script = SubResource("GDScript_fe85m")
 
 [connection signal="pressed" from="MarginContainer2/VBoxContainer/MarginContainer/HBoxContainer/MarginContainer/VBoxContainer/MarginContainer/VBoxContainer/PlayLevelButton" to="MarginContainer2/VBoxContainer/MarginContainer/HBoxContainer/MarginContainer/VBoxContainer/MarginContainer/VBoxContainer/PlayLevelButton" method="_on_pressed"]
 [connection signal="pressed" from="MarginContainer2/VBoxContainer/MarginContainer/HBoxContainer/MarginContainer3/VBoxContainer/MarginContainer/VBoxContainer/PlayLevelButton" to="MarginContainer2/VBoxContainer/MarginContainer/HBoxContainer/MarginContainer3/VBoxContainer/MarginContainer/VBoxContainer/PlayLevelButton" method="_on_pressed"]
+[connection signal="pressed" from="Button" to="MarginContainer2/VBoxContainer/MarginContainer/HBoxContainer/MarginContainer/VBoxContainer/MarginContainer/VBoxContainer/PlayLevelButton" method="_on_button_pressed"]
+[connection signal="pressed" from="Button" to="Button" method="_on_pressed"]

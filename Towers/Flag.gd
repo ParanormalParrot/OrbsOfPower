@@ -1,5 +1,6 @@
 extends CharacterBody2D
 
+class_name Flag
 
 var dragging = false
 var previous_position
@@ -12,9 +13,6 @@ func _ready():
 	set_process_input(true)
 	
 
-
-
-
 func _physics_process(delta):
 	if dragging:
 		if self in range.get_overlapping_bodies():
@@ -25,9 +23,6 @@ func _physics_process(delta):
 			global_position = previous_position
 			is_in_range = true
 			dragging = false
-
-		
-	
 
 
 func _on_drag_handle_input_event(viewport, event, shape_idx):

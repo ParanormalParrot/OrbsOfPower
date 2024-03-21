@@ -1,5 +1,6 @@
 extends AttackTower
 
+class_name SeismicPsychicMageTower
 
 func attack():
 	var projectile1 = projectileAsset.instantiate()
@@ -34,7 +35,6 @@ func attack():
 	projectile6.rotation_degrees = 225
 	projectile7.rotation_degrees = 270
 	projectile8.rotation_degrees = 315
-	
 	projectile1.damage = projectileDamage
 	projectile2.damage = projectileDamage
 	projectile3.damage = projectileDamage

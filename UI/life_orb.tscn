@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=3 uid="uid://c647nwocfjxgr"]
 
 [ext_resource type="Texture2D" uid="uid://7fcgmvhgqowo" path="res://Sprites/life_orb.png" id="1_5qfar"]
-[ext_resource type="Script" path="res://UI/LifeOrb.gd" id="2_t12ch"]
+[ext_resource type="Script" path="res://UI/life_orb.gd" id="2_t12ch"]
 [ext_resource type="FontFile" uid="uid://cv2ux2mgk6ig5" path="res://Fonts/cc.yal.6w4.otf" id="3_dnvmr"]
 [ext_resource type="Texture2D" uid="uid://bcktag2dgjej4" path="res://Sprites/mana_star_mini.png" id="4_c7pgm"]
 

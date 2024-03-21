@@ -1,6 +1,6 @@
 extends AttackTower
 
-
+class_name PsychicMageTower
 
 func attack():
 	if enemies != []:

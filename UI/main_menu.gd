@@ -1,6 +1,7 @@
 extends Control
 
 class_name MainMenu
+
 @export var menu: Control
 @export var options: Control
 
@@ -19,9 +20,6 @@ func _on_options_button_pressed():
 
 func _on_play_button_pressed():
 	get_tree().change_scene_to_file("res://Scenes/level_selection_screen.tscn")
-
-
-
 
 func _on_back_button_pressed():
 	menu.visible = true
