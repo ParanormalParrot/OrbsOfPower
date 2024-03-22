@@ -1,9 +1,11 @@
-[gd_scene load_steps=8 format=3 uid="uid://c13wk781qy235"]
+[gd_scene load_steps=14 format=3 uid="uid://c13wk781qy235"]
 
 [ext_resource type="Script" path="res://Enemies/blood_mage.gd" id="1_j1n6o"]
 [ext_resource type="Texture2D" uid="uid://ccjx8k7gcxy4f" path="res://Sprites/hypnosis_indicator.png" id="3_5xc01"]
+[ext_resource type="Texture2D" uid="uid://6cj6mpinqtwt" path="res://Sprites/blood_mage_walk.png" id="4_3toiw"]
 [ext_resource type="Texture2D" uid="uid://y6ssecqafom8" path="res://Sprites/stalled_indicator.png" id="4_21cq1"]
-[ext_resource type="Texture2D" uid="uid://ur2f231bt30q" path="res://Sprites/blood_mage.png" id="4_cg03i"]
+[ext_resource type="Texture2D" uid="uid://cq5r4r1sk7ae1" path="res://Sprites/blood_mage_heal.png" id="4_nklih"]
+[ext_resource type="Texture2D" uid="uid://cubp583tr7146" path="res://Sprites/blood_mage_attack.png" id="5_imn2w"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_vqmay"]
 radius = 1.25602
@@ -16,6 +18,132 @@ height = 48.0
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_7e0u7"]
 radius = 34.0
 height = 78.0
+
+[sub_resource type="Animation" id="Animation_1uf0k"]
+resource_name = "walk"
+length = 0.4
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("BloodMage:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("4_3toiw")]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("BloodMage:hframes")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [4]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("BloodMage:frame")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3]
+}
+
+[sub_resource type="Animation" id="Animation_vussr"]
+resource_name = "attack"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("BloodMage:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("5_imn2w")]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("BloodMage:hframes")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [1]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("BloodMage:frame")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_luub1"]
+resource_name = "heal"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("BloodMage:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("4_nklih")]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("BloodMage:hframes")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(),
+"transitions": PackedFloat32Array(),
+"update": 1,
+"values": []
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("BloodMage:frame")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(),
+"transitions": PackedFloat32Array(),
+"update": 1,
+"values": []
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_p66rn"]
+_data = {
+"attack": SubResource("Animation_vussr"),
+"heal": SubResource("Animation_luub1"),
+"walk": SubResource("Animation_1uf0k")
+}
 
 [node name="BloodMage" type="CharacterBody2D" groups=["Enemy"]]
 collision_mask = 0
@@ -45,14 +173,19 @@ position = Vector2(0, -51)
 texture = ExtResource("4_21cq1")
 
 [node name="BloodMage" type="Sprite2D" parent="."]
-position = Vector2(0, -24)
-texture = ExtResource("4_cg03i")
+texture = ExtResource("4_nklih")
+offset = Vector2(0, -32)
 
 [node name="HealingRange" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HealingRange"]
 rotation = 1.5708
 shape = SubResource("CapsuleShape2D_7e0u7")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_p66rn")
+}
 
 [connection signal="body_entered" from="Sight" to="." method="_on_sight_body_entered"]
 [connection signal="body_exited" from="Sight" to="." method="_on_sight_body_exited"]

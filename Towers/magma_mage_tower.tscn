@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=3 uid="uid://cb5o6osaq1wra"]
+[gd_scene load_steps=26 format=3 uid="uid://cb5o6osaq1wra"]
 
 [ext_resource type="Script" path="res://Towers/earth_mage_tower.gd" id="1_n1tv2"]
 [ext_resource type="PackedScene" uid="uid://cg55wwpv46cdr" path="res://Projectiles/magma_rift.tscn" id="2_fueif"]
@@ -218,10 +218,14 @@ states/idle_behind/node = SubResource("AnimationNodeAnimation_h4vlx")
 states/idle_behind/position = Vector2(481, 282)
 transitions = ["Start", "idle", SubResource("AnimationNodeStateMachineTransition_t07gn"), "attack", "idle", SubResource("AnimationNodeStateMachineTransition_ejkeq"), "attack_behind", "idle_behind", SubResource("AnimationNodeStateMachineTransition_8qb06")]
 
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_g6020"]
+radius = 15.0
+height = 45.0
+
 [node name="EarthMageTower" type="StaticBody2D" node_paths=PackedStringArray("animation_tree")]
 script = ExtResource("1_n1tv2")
 projectileAsset = ExtResource("2_fueif")
-projectileDamage = 30
+projectileDamage = 20
 recharge_time = 3.0
 animation_tree = NodePath("AnimationTree")
 
@@ -277,8 +281,18 @@ libraries = {
 "": SubResource("AnimationLibrary_jimlm")
 }
 
+[node name="MouseArea2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="MouseArea2D"]
+light_mask = 3
+visibility_layer = 3
+position = Vector2(0, 5)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_g6020")
+
 [connection signal="area_entered" from="Range" to="." method="_on_range_area_entered"]
 [connection signal="body_entered" from="Range" to="." method="_on_range_body_entered"]
 [connection signal="body_exited" from="Range" to="." method="_on_range_body_exited"]
 [connection signal="body_shape_exited" from="Range" to="." method="_on_range_body_shape_exited"]
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+[connection signal="input_event" from="MouseArea2D" to="." method="_on_mouse_area_2d_input_event"]

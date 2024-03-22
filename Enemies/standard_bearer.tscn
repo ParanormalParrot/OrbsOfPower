@@ -1,10 +1,11 @@
-[gd_scene load_steps=13 format=3 uid="uid://b7pfv0p33d5q0"]
+[gd_scene load_steps=14 format=3 uid="uid://b7pfv0p33d5q0"]
 
 [ext_resource type="Script" path="res://Enemies/standard_bearer.gd" id="1_hx3rp"]
 [ext_resource type="Texture2D" uid="uid://c6sy3tpcaptia" path="res://Sprites/standard_bearer-Sheet.png" id="2_6sujl"]
 [ext_resource type="Texture2D" uid="uid://ccjx8k7gcxy4f" path="res://Sprites/hypnosis_indicator.png" id="3_sed6y"]
 [ext_resource type="Texture2D" uid="uid://y6ssecqafom8" path="res://Sprites/stalled_indicator.png" id="4_qtwlt"]
 [ext_resource type="Texture2D" uid="uid://ncvpx6e6b4ky" path="res://Sprites/standard_bearer_attack-Sheet.png" id="5_rqlng"]
+[ext_resource type="Texture2D" uid="uid://dlrd506k5g7pk" path="res://Sprites/shadow.png" id="6_4bkn5"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_vqmay"]
 radius = 0.836032
@@ -27,6 +28,7 @@ corner_radius_bottom_left = 30
 
 [sub_resource type="Animation" id="Animation_iar5v"]
 resource_name = "attack"
+length = 0.2
 loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -116,7 +118,11 @@ _data = {
 collision_mask = 0
 script = ExtResource("1_hx3rp")
 speed = 30
+maxHealth = 80
+attack_recharge_time = 1
 manaReward = 20
+PhysicalDefense = 0.1
+PsychicDefense = 0.3
 
 [node name="Footman-sheet" type="Sprite2D" parent="."]
 z_as_relative = false
@@ -124,6 +130,7 @@ y_sort_enabled = true
 texture = ExtResource("2_6sujl")
 offset = Vector2(0, -32)
 hframes = 4
+frame = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, -13)
@@ -177,6 +184,11 @@ libraries = {
 }
 autoplay = "walk"
 movie_quit_on_finish = true
+
+[node name="Shadow" type="Sprite2D" parent="."]
+z_index = -1
+position = Vector2(-1, 0)
+texture = ExtResource("6_4bkn5")
 
 [connection signal="body_entered" from="Sight" to="." method="_on_sight_body_entered"]
 [connection signal="body_exited" from="Sight" to="." method="_on_sight_body_exited"]

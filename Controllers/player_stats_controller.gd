@@ -22,16 +22,7 @@ class_name PlayerStatsController
 		if hearts == 0:
 			defeat_menu.visible = true
 			get_tree().paused = true
-@export var numberOfWaves = 1
-var currentWaveNumber: int = 0:
-	get:
-		return mana
-	set(value):
-		mana = value
-		if manaLabel:
-			manaLabel.text = (str(mana))
-		
-	
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	mana = mana 

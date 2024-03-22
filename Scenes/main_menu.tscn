@@ -188,5 +188,5 @@ texture = ExtResource("10_f17ac")
 [connection signal="value_changed" from="CenterContainer/MarginContainer/Options/HBoxContainer/VBoxContainer/MasterVolumeSlider" to="CenterContainer/MarginContainer/Options/HBoxContainer/VBoxContainer/MasterVolumeSlider" method="_on_value_changed"]
 [connection signal="value_changed" from="CenterContainer/MarginContainer/Options/HBoxContainer/VBoxContainer/VolumeSlider2" to="CenterContainer/MarginContainer/Options/HBoxContainer/VBoxContainer/VolumeSlider2" method="_on_value_changed"]
 [connection signal="value_changed" from="CenterContainer/MarginContainer/Options/HBoxContainer/VBoxContainer/VolumeSlider3" to="CenterContainer/MarginContainer/Options/HBoxContainer/VBoxContainer/VolumeSlider3" method="_on_value_changed"]
-[connection signal="pressed" from="CenterContainer/MarginContainer/Options/BackButton" to="." method="_on_button_pressed"]
 [connection signal="pressed" from="CenterContainer/MarginContainer/Options/BackButton" to="." method="_on_back_button_pressed"]
+[connection signal="pressed" from="CenterContainer/MarginContainer/Options/BackButton" to="." method="_on_button_pressed"]

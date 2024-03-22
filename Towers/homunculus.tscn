@@ -1,17 +1,116 @@
-[gd_scene load_steps=4 format=3 uid="uid://dnesd8ou4eqvb"]
+[gd_scene load_steps=9 format=3 uid="uid://dnesd8ou4eqvb"]
 
 [ext_resource type="Texture2D" uid="uid://cgarogfchcpa5" path="res://Sprites/homunculus.png" id="1_7cdbb"]
 [ext_resource type="Script" path="res://Towers/homunculus.gd" id="1_v2qvu"]
+[ext_resource type="Texture2D" uid="uid://b6d4lly1bnrld" path="res://Sprites/homunculus_attack.png" id="2_3xw02"]
+[ext_resource type="Texture2D" uid="uid://dlrd506k5g7pk" path="res://Sprites/shadow.png" id="3_fu3hb"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_e5mcx"]
+
+[sub_resource type="Animation" id="Animation_e1mo3"]
+resource_name = "attack"
+length = 0.3
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Homunculus:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("2_3xw02")]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Homunculus:hframes")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [3]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Homunculus:frame")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [0, 1, 2]
+}
+
+[sub_resource type="Animation" id="Animation_ro3ln"]
+resource_name = "idle"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Homunculus:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("1_7cdbb")]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Homunculus:hframes")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [1]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Homunculus:frame")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_3wr2j"]
+_data = {
+"attack": SubResource("Animation_e1mo3"),
+"idle": SubResource("Animation_ro3ln")
+}
 
 [node name="Homunculus" type="CharacterBody2D"]
 script = ExtResource("1_v2qvu")
 
 [node name="Homunculus" type="Sprite2D" parent="."]
-position = Vector2(0, -21)
+position = Vector2(0, -24)
 texture = ExtResource("1_7cdbb")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_e5mcx")
 disabled = true
+
+[node name="Shadow" type="Sprite2D" parent="."]
+z_index = -1
+position = Vector2(1, 0)
+texture = ExtResource("3_fu3hb")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_3wr2j")
+}

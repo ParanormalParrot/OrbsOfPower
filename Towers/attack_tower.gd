@@ -58,17 +58,10 @@ func _on_mouse_area_2d_input_event(viewport, event, shape_idx):
 		$TowerUI.visible = !$TowerUI.visible
 
 
-
-
 func _on_dismantle_button_pressed():
 	get_tree().get_root().get_node("Main/PlayerStatsController").mana+= cost/2
 	queue_free()
 	
-
-
-
-
-
 
 func _on_tower_ui_mouse_exited():
 	$TowerUI.visible = false

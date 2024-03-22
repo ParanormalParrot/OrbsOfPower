@@ -7,6 +7,7 @@ var targetPosition
 @export var speed = 200
 var damage
 const Enemy = preload("res://Enemies/enemy.gd")
+@export var damage_type = Enums.DamageType.PURE
 
 
 func _process(delta):

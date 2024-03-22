@@ -9,7 +9,7 @@ class_name Enemy
 @export var attack_recharge_time = 2
 var current_attack_recharge_time = attack_recharge_time
 
-var currentHealth = 20
+var currentHealth = maxHealth
 var stunTime = 0
 var slownessTime = 0
 var speed_buff_time = 0
@@ -32,6 +32,7 @@ func _ready():
 	tower_target = $Target
 	$HypnosisIndicator.visible = false
 	$StalledIndicator.visible = false
+	currentHealth = maxHealth
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
@@ -77,10 +78,11 @@ func _process(delta):
 						opponent.isStalled = true
 					else:
 						var parent = get_parent()
+						if $AnimationPlayer:
+							$AnimationPlayer.play("walk")
 						parent.set_progress(parent.get_progress() - (1 - slow_effect) * (1+speed_effect) * speed * delta)
 						
 				else:
-					$AnimationPlayer.play("attack")
 					var destination = Vector2(opponent.global_position.x + 20, opponent.global_position.y)
 					var direction = global_position.direction_to(destination)
 					var distance = global_position.distance_to(destination)
@@ -90,12 +92,17 @@ func _process(delta):
 					move_and_slide()
 					if global_position == destination:
 						isFighting = true
+						opponent.isFighting = true
 				
 				
 			else:
 				if opponent == null:
+					if $AnimationPlayer:
+							$AnimationPlayer.play("walk")
 					isFighting = false
 				else:
+					if $AnimationPlayer:
+							$AnimationPlayer.play("attack")
 					if current_attack_recharge_time <= 0:
 						attack()
 						current_attack_recharge_time = attack_recharge_time

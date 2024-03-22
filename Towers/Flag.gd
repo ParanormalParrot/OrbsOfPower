@@ -8,14 +8,16 @@ var previous_drag_position
 var is_in_range = true
 var position_changed = false
 @export var range : Area2D
+@export var tower_collision : CollisionObject2D
+
 
 func _ready():
 	set_process_input(true)
 	
 
 func _physics_process(delta):
-	if dragging:
-		if self in range.get_overlapping_bodies():
+	if get_parent().tower_ui.visible and dragging:
+		if self in range.get_overlapping_bodies() and $Area2D.get_overlapping_bodies().size() == 0:
 			previous_drag_position = global_position
 			global_position = get_global_mouse_position()
 			

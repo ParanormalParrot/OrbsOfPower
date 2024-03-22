@@ -34,7 +34,7 @@ func _process(delta):
 		beam.add_point(target_enemy.tower_target.global_position -  global_position)
 		beam_outline.add_point(target_enemy.tower_target.global_position -  global_position)
 		if current_recharge_time <= 0:
-			target_enemy.take_damage(current_damage)
+			target_enemy.take_damage(current_damage, Enums.DamageType.PSYCHIC)
 			if current_damage < max_damage:
 				current_damage+=damage_increment
 				if current_damage > (max_damage + min_damage) / 2:

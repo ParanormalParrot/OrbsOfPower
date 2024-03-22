@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://cvpl6vgdlv4n5"]
+[gd_scene load_steps=9 format=3 uid="uid://cvpl6vgdlv4n5"]
 
 [ext_resource type="Script" path="res://Towers/hypnosist_tower.gd" id="1_2hlgw"]
 [ext_resource type="Texture2D" uid="uid://djqv22sy0wxcx" path="res://Sprites/hypnotist.png" id="3_8k7t5"]
@@ -11,6 +11,10 @@ radius = 75.0
 height = 200.0
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_obql7"]
+radius = 15.0
+height = 45.0
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_h1jcf"]
 radius = 15.0
 height = 45.0
 
@@ -54,6 +58,15 @@ rotation = 1.5708
 shape = SubResource("CapsuleShape2D_obql7")
 
 [node name="TowerUI" parent="." instance=ExtResource("5_dwuvc")]
+
+[node name="MouseArea2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="MouseArea2D"]
+light_mask = 3
+visibility_layer = 3
+position = Vector2(0, 5)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_h1jcf")
 
 [connection signal="area_entered" from="Range" to="." method="_on_range_area_entered"]
 [connection signal="body_entered" from="Range" to="." method="_on_range_body_entered"]

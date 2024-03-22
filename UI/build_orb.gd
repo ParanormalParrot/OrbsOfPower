@@ -37,8 +37,7 @@ func _on_gui_input(event):
 			if get_child(1).isValidPosition:
 				print(event.global_position)
 				var tower = towerPrefab.instantiate()
-				var path = get_tree().get_root().get_node("Main/Towers")
-				path.add_child(tower)
+				get_tree().current_scene.add_child(tower)
 				tower.position = get_global_mouse_position()
 				print(tower.position)
 				tower.name = "ApprenticeTower"

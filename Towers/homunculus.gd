@@ -21,6 +21,8 @@ func _ready():
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	if enemies.size() == 0:
+		if $AnimationPlayer:
+			$AnimationPlayer.play("idle")
 		var direction = global_position.direction_to(defaultPosition)
 		var distance = global_position.distance_to(defaultPosition)
 
@@ -30,17 +32,23 @@ func _process(delta):
 	else:
 		if !isFighting:
 			if opponent == null:
+				if $AnimationPlayer:
+					$AnimationPlayer.play("idle")
 				opponent = enemies[enemies.size() - 1]
 				for i in enemies:
-					if i != null:
+					if is_instance_valid(i) and is_instance_valid(opponent):
 						if i.get_parent().get_progress() > opponent.get_parent().get_progress():
 							opponent = i;
-				if !opponent.isStalled:
+				if is_instance_valid(opponent) and !opponent.isStalled:
 					opponent.opponent = self
 					opponent.isStalled = true
 				else:
 					opponent = null
+					if $AnimationPlayer:
+						$AnimationPlayer.play("idle")
 			else:
+				if $AnimationPlayer:
+						$AnimationPlayer.play("idle")
 				var destination = Vector2(opponent.global_position.x + 20, opponent.global_position.y)
 				var direction = global_position.direction_to(destination)
 				var distance = global_position.distance_to(destination)
@@ -54,8 +62,12 @@ func _process(delta):
 				
 		else:
 			if opponent == null:
+				if $AnimationPlayer:
+					$AnimationPlayer.play("idle")
 				isFighting = false
 			else:
+				if $AnimationPlayer:
+					$AnimationPlayer.play("attack")
 				if currentAttackRechargeTime <= 0:
 					attack()
 					currentAttackRechargeTime = attackRechargeTime

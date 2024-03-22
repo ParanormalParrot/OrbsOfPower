@@ -1,10 +1,11 @@
-[gd_scene load_steps=17 format=3 uid="uid://bogqunitaidlc"]
+[gd_scene load_steps=18 format=3 uid="uid://bogqunitaidlc"]
 
 [ext_resource type="Texture2D" uid="uid://b4qhya66kqces" path="res://Sprites/footman-Sheet.png" id="1_lof0q"]
 [ext_resource type="Script" path="res://Enemies/enemy.gd" id="1_uo058"]
 [ext_resource type="Texture2D" uid="uid://b0ssbxwy6fmau" path="res://Sprites/footman_attack-Sheet.png" id="2_afu51"]
 [ext_resource type="Texture2D" uid="uid://ccjx8k7gcxy4f" path="res://Sprites/hypnosis_indicator.png" id="3_cn50f"]
 [ext_resource type="Texture2D" uid="uid://y6ssecqafom8" path="res://Sprites/stalled_indicator.png" id="4_dqub0"]
+[ext_resource type="Texture2D" uid="uid://dlrd506k5g7pk" path="res://Sprites/shadow.png" id="6_maytb"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_vqmay"]
 radius = 0.836032
@@ -106,7 +107,11 @@ graph_offset = Vector2(-14, -31)
 [node name="Footman" type="CharacterBody2D" groups=["Enemy"]]
 collision_mask = 0
 script = ExtResource("1_uo058")
+speed = 40
+maxHealth = 25
 attack_recharge_time = 1
+manaReward = 10
+PhysicalDefense = 0.3
 
 [node name="Sprite" type="Sprite2D" parent="."]
 z_as_relative = false
@@ -114,10 +119,9 @@ y_sort_enabled = true
 texture = ExtResource("2_afu51")
 offset = Vector2(0, -24)
 hframes = 4
-frame = 3
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(1, -17)
+position = Vector2(0, -17)
 scale = Vector2(-7.96166, 2.77858)
 shape = SubResource("CapsuleShape2D_vqmay")
 
@@ -154,6 +158,10 @@ libraries = {
 }
 autoplay = "walk"
 movie_quit_on_finish = true
+
+[node name="Shadow" type="Sprite2D" parent="."]
+z_index = -1
+texture = ExtResource("6_maytb")
 
 [connection signal="body_entered" from="Sight" to="." method="_on_sight_body_entered"]
 [connection signal="body_exited" from="Sight" to="." method="_on_sight_body_exited"]

@@ -12,12 +12,15 @@ func attack():
 		projectiile.damage = projectileDamage
 		var sortedEnemies = enemies
 		sortedEnemies.sort_custom(compare_objects)
-		var targetEnemy = sortedEnemies[(sortedEnemies.size()-1)/2]
-		projectiile.global_position = targetEnemy.global_position
+		target = enemies[0];
+		for i in enemies:
+			if i.get_parent().get_progress() > target.get_parent().get_progress():
+				target = i;
+		projectiile.global_position = target.global_position
 		isAttackCharged = false	
-		var angle = rad_to_deg((targetEnemy.global_position - global_position).angle())
+		var angle = rad_to_deg((target.global_position - global_position).angle())
 		if animation_tree:
-			if angle >= 0 && angle <= 180:
+			if angle >= -30 && angle <= 210:
 				animation_tree["parameters/playback"].travel("attack")
 			else:
 				animation_tree["parameters/playback"].travel("attack_behind")

@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://cdo575p0nrj5r"]
+[gd_scene load_steps=17 format=3 uid="uid://cdo575p0nrj5r"]
 
 [ext_resource type="Script" path="res://Towers/alchemist_tower.gd" id="1_6ktuo"]
 [ext_resource type="Texture2D" uid="uid://tg1qqpi86ncg" path="res://Sprites/apprentice_mage_tower.png" id="2_bmy71"]
@@ -7,6 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://b3182t72cbbsw" path="res://Sprites/earth_alchemist_banner.png" id="4_rlaa0"]
 [ext_resource type="Texture2D" uid="uid://dot8fms7d3cku" path="res://Sprites/flag.png" id="6_p3gwu"]
 [ext_resource type="Script" path="res://Towers/flag.gd" id="6_pt2x4"]
+[ext_resource type="PackedScene" uid="uid://cpafvfljhg0um" path="res://UI/tower_ui.tscn" id="8_edbcd"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_umy21"]
 radius = 75.0
@@ -34,6 +35,14 @@ corner_radius_bottom_left = 30
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_bdeqn"]
 radius = 4.0
 height = 10.0
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_nmkh7"]
+radius = 4.0
+height = 10.0
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_rgucv"]
+radius = 15.0
+height = 45.0
 
 [node name="AlchemistTower" type="StaticBody2D"]
 collision_layer = 3
@@ -94,6 +103,8 @@ rotation = 1.5708
 shape = SubResource("CapsuleShape2D_6n4wt")
 
 [node name="DragHandle" type="Area2D" parent="Flag"]
+light_mask = 8
+visibility_layer = 8
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Flag/DragHandle"]
 z_index = 1
@@ -121,6 +132,25 @@ theme_override_styles/panel = SubResource("StyleBoxFlat_tqp45")
 rotation = 1.5708
 shape = SubResource("CapsuleShape2D_bdeqn")
 
+[node name="Area2D" type="Area2D" parent="Flag"]
+light_mask = 8
+visibility_layer = 8
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Flag/Area2D"]
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_nmkh7")
+
+[node name="MouseArea2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="MouseArea2D"]
+light_mask = 3
+visibility_layer = 3
+position = Vector2(0, 5)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_rgucv")
+
+[node name="TowerUI" parent="." instance=ExtResource("8_edbcd")]
+
 [connection signal="area_entered" from="Range" to="." method="_on_range_area_entered"]
 [connection signal="area_entered" from="Range" to="Flag" method="_on_range_area_entered"]
 [connection signal="body_entered" from="Range" to="." method="_on_range_body_entered"]
@@ -131,3 +161,5 @@ shape = SubResource("CapsuleShape2D_bdeqn")
 [connection signal="body_entered" from="Flag/AggroRange" to="." method="_on_aggro_range_body_entered"]
 [connection signal="body_exited" from="Flag/AggroRange" to="." method="_on_aggro_range_body_exited"]
 [connection signal="input_event" from="Flag/DragHandle" to="Flag" method="_on_drag_handle_input_event"]
+
+[editable path="TowerUI"]

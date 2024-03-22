@@ -17,7 +17,7 @@ height = 200.0
 collision_layer = 3
 collision_mask = 3
 script = ExtResource("1_3it42")
-projectileDamage = 10
+projectileDamage = 8
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 light_mask = 3
@@ -50,9 +50,6 @@ shape = SubResource("CapsuleShape2D_umy21")
 autostart = true
 
 [node name="TowerUI" parent="." instance=ExtResource("4_dic27")]
-
-[node name="DismantleButton" parent="TowerUI" index="0"]
-mouse_filter = 1
 
 [node name="MouseArea2D" type="Area2D" parent="."]
 z_index = 5

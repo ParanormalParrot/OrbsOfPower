@@ -1,11 +1,22 @@
-[gd_scene load_steps=3 format=3 uid="uid://c4srfgria2vps"]
+[gd_scene load_steps=5 format=3 uid="uid://c4srfgria2vps"]
 
 [ext_resource type="Script" path="res://Audio/audio_manager.gd" id="1_r1ix0"]
 [ext_resource type="AudioStream" uid="uid://b52jbb65ofobt" path="res://Audio/Dark Souls 2 OST - Majula [HQ] (Remastered) (320 kbps).mp3" id="2_gt22k"]
+[ext_resource type="AudioStream" uid="uid://cvue80ealtn6g" path="res://Audio/Kingdom-Rush-Origins-OST-Enchanted-Forest-Preparation-I.mp3" id="3_72vkv"]
+[ext_resource type="AudioStream" uid="uid://chwsyjv34bsm1" path="res://Audio/Kingdom-Rush-Frontiers-UNUSED-OST-Bonus-Map-I.mp3" id="4_hnc74"]
 
 [node name="Node" type="Node"]
+process_mode = 3
 script = ExtResource("1_r1ix0")
 
 [node name="MenuMusic" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("2_gt22k")
+bus = &"Music"
+
+[node name="PreparationMusic" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_72vkv")
+bus = &"Music"
+
+[node name="BattleMusic" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_hnc74")
 bus = &"Music"

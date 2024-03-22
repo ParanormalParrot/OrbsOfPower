@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://ccadli72fk4gx"]
+[gd_scene load_steps=16 format=3 uid="uid://ccadli72fk4gx"]
 
 [ext_resource type="Script" path="res://Towers/alchemist_tower.gd" id="1_qcldu"]
 [ext_resource type="PackedScene" uid="uid://dnesd8ou4eqvb" path="res://Towers/homunculus.tscn" id="2_fd6ch"]
@@ -7,6 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://nnh0v4yapss0" path="res://Sprites/alchemist_banner.png" id="5_5dte3"]
 [ext_resource type="Texture2D" uid="uid://dot8fms7d3cku" path="res://Sprites/flag.png" id="6_ixw6v"]
 [ext_resource type="Script" path="res://Towers/flag.gd" id="6_pf33f"]
+[ext_resource type="PackedScene" uid="uid://cpafvfljhg0um" path="res://UI/tower_ui.tscn" id="8_y1soy"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_umy21"]
 radius = 75.0
@@ -34,6 +35,10 @@ corner_radius_bottom_left = 30
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_bdeqn"]
 radius = 4.0
 height = 10.0
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ol1mv"]
+radius = 15.0
+height = 45.0
 
 [node name="AlchemistTower" type="StaticBody2D" groups=["Tower"]]
 collision_layer = 3
@@ -121,6 +126,25 @@ theme_override_styles/panel = SubResource("StyleBoxFlat_tqp45")
 rotation = 1.5708
 shape = SubResource("CapsuleShape2D_bdeqn")
 
+[node name="Area2D" type="Area2D" parent="Flag"]
+light_mask = 8
+visibility_layer = 8
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Flag/Area2D"]
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_bdeqn")
+
+[node name="MouseArea2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="MouseArea2D"]
+light_mask = 3
+visibility_layer = 3
+position = Vector2(0, 5)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_ol1mv")
+
+[node name="TowerUI" parent="." instance=ExtResource("8_y1soy")]
+
 [connection signal="area_entered" from="Range" to="." method="_on_range_area_entered"]
 [connection signal="area_entered" from="Range" to="Flag" method="_on_range_area_entered"]
 [connection signal="body_entered" from="Range" to="." method="_on_range_body_entered"]
@@ -131,3 +155,8 @@ shape = SubResource("CapsuleShape2D_bdeqn")
 [connection signal="body_entered" from="Flag/AggroRange" to="." method="_on_aggro_range_body_entered"]
 [connection signal="body_exited" from="Flag/AggroRange" to="." method="_on_aggro_range_body_exited"]
 [connection signal="input_event" from="Flag/DragHandle" to="Flag" method="_on_drag_handle_input_event"]
+[connection signal="input_event" from="MouseArea2D" to="." method="_on_mouse_area_2d_input_event"]
+[connection signal="mouse_exited" from="TowerUI" to="." method="_on_tower_ui_mouse_exited"]
+[connection signal="pressed" from="TowerUI/DismantleButton" to="." method="_on_dismantle_button_pressed"]
+
+[editable path="TowerUI"]

@@ -42,9 +42,8 @@ func _on_gui_input(event):
 				
 		elif event is InputEventMouseButton and event.button_mask == 0:
 			if get_child(1).overlappedTower != null and "ApprenticeTower" in get_child(1).overlappedTower.name and gameController.mana >= mana_cost:
-				var path = get_tree().get_root().get_node("Main/Towers")
 				var alchemistTower = alchemistTowerPrefab.instantiate()
-				path.add_child(alchemistTower)
+				get_tree().current_scene.add_child(alchemistTower)
 				alchemistTower.position = get_child(1).overlappedTower.position
 				var cost = get_child(1).overlappedTower.cost + mana_cost
 				alchemistTower.cost = cost
@@ -54,9 +53,8 @@ func _on_gui_input(event):
 				
 				gameController.mana -= mana_cost
 			if get_child(1).overlappedTower != null and "FireMageTower" in get_child(1).overlappedTower.name and gameController.mana >= mana_cost:
-				var path = get_tree().get_root().get_node("Main/Towers")
 				var upgradedTower = fireAlchemistTowerPrefab.instantiate()
-				path.add_child(upgradedTower)
+				get_tree().current_scene.add_child(upgradedTower)
 				upgradedTower.position = get_child(1).overlappedTower.position
 				upgradedTower.name= "FireAlchemistTower"
 				var cost = get_child(1).overlappedTower.cost + mana_cost
@@ -65,9 +63,8 @@ func _on_gui_input(event):
 				get_child(1).queue_free()
 				gameController.mana -= mana_cost
 			if get_child(1).overlappedTower != null and "EarthMageTower" in get_child(1).overlappedTower.name and gameController.mana >= mana_cost:
-				var path = get_tree().get_root().get_node("Main/Towers")
 				var upgradedTower = earthAlchemistTower.instantiate()
-				path.add_child(upgradedTower)
+				get_tree().current_scene.add_child(upgradedTower)
 				upgradedTower.position = get_child(1).overlappedTower.position
 				upgradedTower.name= "EarthAlchemistTower"
 				var cost = get_child(1).overlappedTower.cost + mana_cost
@@ -76,9 +73,8 @@ func _on_gui_input(event):
 				get_child(1).queue_free()
 				gameController.mana -= mana_cost
 			if get_child(1).overlappedTower != null and "PsychicMageTower" in get_child(1).overlappedTower.name and gameController.mana >= mana_cost:
-				var path = get_tree().get_root().get_node("Main/Towers")
 				var upgradedTower = hypnosistTower.instantiate()
-				path.add_child(upgradedTower)
+				get_tree().current_scene.add_child(upgradedTower)
 				upgradedTower.position = get_child(1).overlappedTower.position
 				upgradedTower.name= "EarthAlchemistTower"
 				var cost = get_child(1).overlappedTower.cost + mana_cost

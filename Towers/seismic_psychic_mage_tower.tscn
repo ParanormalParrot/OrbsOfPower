@@ -20,6 +20,7 @@ collision_layer = 3
 collision_mask = 3
 script = ExtResource("1_2517y")
 projectileAsset = ExtResource("2_g66lm")
+projectileDamage = 14
 recharge_time = 4.0
 
 [node name="ApprenticeMageTower" type="Sprite2D" parent="."]

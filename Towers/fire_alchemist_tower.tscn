@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://b8k8iocmkewgs"]
+[gd_scene load_steps=16 format=3 uid="uid://b8k8iocmkewgs"]
 
 [ext_resource type="Script" path="res://Towers/alchemist_tower.gd" id="1_xpa74"]
 [ext_resource type="Texture2D" uid="uid://tg1qqpi86ncg" path="res://Sprites/apprentice_mage_tower.png" id="2_i6rx5"]
@@ -7,6 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://cbsketdhsy2bp" path="res://Sprites/fire_alchemist_banner.png" id="5_n1ykf"]
 [ext_resource type="Texture2D" uid="uid://dot8fms7d3cku" path="res://Sprites/flag.png" id="6_4m4cl"]
 [ext_resource type="Script" path="res://Towers/flag.gd" id="6_7uynu"]
+[ext_resource type="PackedScene" uid="uid://cpafvfljhg0um" path="res://UI/tower_ui.tscn" id="8_wdr7m"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_umy21"]
 radius = 75.0
@@ -34,6 +35,10 @@ corner_radius_bottom_left = 30
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_bdeqn"]
 radius = 4.0
 height = 10.0
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_4m5vf"]
+radius = 15.0
+height = 45.0
 
 [node name="AlchemistTower" type="StaticBody2D"]
 collision_layer = 3
@@ -127,6 +132,17 @@ shape = SubResource("CapsuleShape2D_bdeqn")
 rotation = 1.5708
 shape = SubResource("CapsuleShape2D_bdeqn")
 
+[node name="MouseArea2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="MouseArea2D"]
+light_mask = 3
+visibility_layer = 3
+position = Vector2(0, 5)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_4m5vf")
+
+[node name="TowerUI" parent="." instance=ExtResource("8_wdr7m")]
+
 [connection signal="area_entered" from="Range" to="." method="_on_range_area_entered"]
 [connection signal="body_entered" from="Range" to="." method="_on_range_body_entered"]
 [connection signal="body_exited" from="Range" to="." method="_on_range_body_exited"]
@@ -135,3 +151,9 @@ shape = SubResource("CapsuleShape2D_bdeqn")
 [connection signal="body_entered" from="Flag/AggroRange" to="." method="_on_aggro_range_body_entered"]
 [connection signal="body_exited" from="Flag/AggroRange" to="." method="_on_aggro_range_body_exited"]
 [connection signal="input_event" from="Flag/DragHandle" to="Flag" method="_on_drag_handle_input_event"]
+[connection signal="input_event" from="MouseArea2D" to="." method="_on_mouse_area_2d_input_event"]
+[connection signal="gui_input" from="TowerUI" to="." method="_on_tower_ui_gui_input"]
+[connection signal="mouse_exited" from="TowerUI" to="." method="_on_tower_ui_mouse_exited"]
+[connection signal="pressed" from="TowerUI/DismantleButton" to="." method="_on_dismantle_button_pressed"]
+
+[editable path="TowerUI"]

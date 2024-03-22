@@ -28,8 +28,9 @@ theme_override_styles/panel = SubResource("StyleBoxFlat_40ns2")
 [node name="DismantleButton" type="Button" parent="."]
 layout_mode = 0
 offset_left = 71.0
-offset_top = 16.0
+offset_top = 40.0
 offset_right = 128.0
-offset_bottom = 38.0
+offset_bottom = 62.0
+mouse_filter = 1
 theme_override_fonts/font = ExtResource("1_qlohf")
 text = "Dismantle"
