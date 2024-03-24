@@ -266,7 +266,6 @@ texture = ExtResource("4_21cq1")
 texture = ExtResource("4_3toiw")
 offset = Vector2(0, -32)
 hframes = 4
-frame = 2
 
 [node name="HealingRange" type="Area2D" parent="."]
 

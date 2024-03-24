@@ -9,7 +9,6 @@ var damage
 const Enemy = preload("res://Enemies/enemy.gd")
 @export var damage_type = Enums.DamageType.PURE
 
-
 func _process(delta):
 	if target != null:
 		var direction = global_position.direction_to(target.tower_target.global_position)
@@ -20,8 +19,6 @@ func _process(delta):
 	else:
 		queue_free()
 	
-	
-
 func _on_area_2d_body_entered(body):
 	if body == target:
 		body.take_damage(damage)

@@ -13,7 +13,6 @@ extends TextureRect
 func _ready():
 	$ManaCostLabel.text = str(mana_cost)
 	
-
 func _process(delta):
 	if gameController.mana >= mana_cost:
 		$ManaCostLabel.set("theme_override_colors/font_color",Color.WHITE)

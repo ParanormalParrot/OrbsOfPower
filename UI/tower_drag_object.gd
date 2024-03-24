@@ -1,5 +1,7 @@
 extends CharacterBody2D
 
+class_name TowerDragObject
+
 var isValidPosition = false
 
 func _ready():
@@ -9,7 +11,6 @@ func _ready():
 	else:
 		isValidPosition = false
 		$PlacementAreaIndicator.modulate = Color(1, 0, 0)
-
 
 
 func _on_area_2d_body_entered(body):

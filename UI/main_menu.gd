@@ -9,10 +9,8 @@ class_name MainMenu
 func _ready():
 	GlobalAudioManager.menu_music.play()
 
-
 func _on_quit_button_pressed():
 	get_tree().quit()
-
 
 func _on_options_button_pressed():
 	menu.visible = false
