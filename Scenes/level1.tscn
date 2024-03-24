@@ -15,8 +15,8 @@
 
 [sub_resource type="Resource" id="Resource_ehsvl"]
 script = ExtResource("6_yyeoy")
-enemy = ExtResource("5_14yby")
-count = 2
+enemy = ExtResource("4_seoao")
+count = 10
 path_index = 0
 start = 1.0
 step = 2.0
