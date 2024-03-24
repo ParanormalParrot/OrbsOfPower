@@ -5,15 +5,13 @@ var enemies = []
 var homunculi = []
 @export var homunculusAsset: PackedScene
 @export var number_of_summons = 2
-var spawnRate = 5
+@export var spawnRate = 5
 var currentSpawnTime = spawnRate
 var cost
 @onready var tower_ui = $TowerUI
 
 func _ready():
 	$TowerUI.visible = false
-	
-	
 	
 func _process(delta):
 	currentSpawnTime-=delta
@@ -25,47 +23,32 @@ func _process(delta):
 			var homunculus = homunculusAsset.instantiate()
 			homunculi.append(homunculus)
 			get_tree().get_current_scene().add_child(homunculus)
-			
-			homunculus.global_position = $Flag.global_position
+			var position = Vector2($Flag.global_position.x + randi()%50 -25 , $Flag.global_position.y)
+			homunculus.global_position = position
+			homunculus.default_position = position
 			homunculus.enemies = enemies
-			homunculus.defaultPosition = $Flag.global_position
 			currentSpawnTime = spawnRate
 
 			
 func _on_aggro_range_body_entered(body):
-	if body.is_in_group("Enemy"):
+	if body.is_in_group("Enemy") and !(body in enemies):
 		enemies.append(body)
-		for i in homunculi:
-			if i != null:
-				i.enemies.append(body)
-
-
-
+	
 func _on_aggro_range_body_exited(body):
 	if body.is_in_group("Enemy"):
 		enemies.erase(body)
-		for i in homunculi:
-			if i != null:
-				i.enemies.erase(body)
-
-
-
+		
 func _on_range_body_entered(body):
 	if body == $Flag:
 		$Flag.is_in_range = true
-
-
-
 
 func _on_range_body_exited(body):
 	if body == $Flag:
 		$Flag.is_in_range = false
 		
-		
 func _on_mouse_area_2d_input_event(viewport, event, shape_idx):
 	if event is InputEventMouseButton and event.button_mask == 1:
 		$TowerUI.visible = !$TowerUI.visible
-
 
 func _on_dismantle_button_pressed():
 	get_tree().get_root().get_node("Main/PlayerStatsController").mana+= cost/2
@@ -74,8 +57,16 @@ func _on_dismantle_button_pressed():
 			i.queue_free()
 	queue_free()
 	
-
 func _on_tower_ui_mouse_exited():
 	$TowerUI.visible = false
-
-
+	
+func _exit_tree():
+	for i in homunculi:
+		if is_instance_valid(i):
+			i.queue_free()
+			
+func reposition_homunculi():
+	for i in homunculi:
+		var new_position = Vector2($Flag.global_position.x + randi()%30 -15 , $Flag.global_position.y)
+		i.global_position = new_position
+		i.default_position = new_position

@@ -1,22 +1,146 @@
-[gd_scene load_steps=5 format=3 uid="uid://mk7xvbq6wgqr"]
+[gd_scene load_steps=15 format=3 uid="uid://mk7xvbq6wgqr"]
 
 [ext_resource type="Script" path="res://Towers/earth_golem.gd" id="1_nayjy"]
 [ext_resource type="PackedScene" uid="uid://b5r8dv4q5mnkx" path="res://Projectiles/earthquake.tscn" id="2_elp07"]
 [ext_resource type="Texture2D" uid="uid://vyfvtskqlh2f" path="res://Sprites/earth_golem.png" id="2_es6pg"]
+[ext_resource type="Texture2D" uid="uid://78y8bcyklggi" path="res://Sprites/earth_golem_attack.png" id="4_wxykk"]
+[ext_resource type="Texture2D" uid="uid://bo08n8t4imf1t" path="res://Sprites/shadow2.png" id="5_n0une"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_e5mcx"]
 
+[sub_resource type="Animation" id="Animation_46lup"]
+resource_name = "attack"
+length = 0.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("4_wxykk")]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite:hframes")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [1]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Sprite:frame")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_i4f57"]
+resource_name = "idle"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("2_es6pg")]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite:hframes")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [1]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Sprite:frame")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_lyhxq"]
+_data = {
+"attack": SubResource("Animation_46lup"),
+"idle": SubResource("Animation_i4f57")
+}
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_73x7g"]
+animation = &"attack"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_gep7b"]
+animation = &"idle"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_5b57e"]
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_0y2ip"]
+switch_mode = 2
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_g55wl"]
+states/attack/node = SubResource("AnimationNodeAnimation_73x7g")
+states/attack/position = Vector2(502, 141)
+states/idle/node = SubResource("AnimationNodeAnimation_gep7b")
+states/idle/position = Vector2(312, 165)
+transitions = ["Start", "idle", SubResource("AnimationNodeStateMachineTransition_5b57e"), "attack", "idle", SubResource("AnimationNodeStateMachineTransition_0y2ip")]
+
 [node name="EarthGolem" type="CharacterBody2D"]
+z_index = -1
 script = ExtResource("1_nayjy")
 earthquakePrefab = ExtResource("2_elp07")
-attackDamage = 30
+earthquake_damage = 20
+attackDamage = 20
 attackRechargeTime = 3
-max_health = 100
+max_health = 300
 
 [node name="Sprite" type="Sprite2D" parent="."]
-position = Vector2(0, -21)
 texture = ExtResource("2_es6pg")
+offset = Vector2(0, -32)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_e5mcx")
 disabled = true
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_lyhxq")
+}
+
+[node name="AnimationTree" type="AnimationTree" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_lyhxq")
+}
+tree_root = SubResource("AnimationNodeStateMachine_g55wl")
+anim_player = NodePath("../AnimationPlayer")
+
+[node name="Shadow2" type="Sprite2D" parent="."]
+texture = ExtResource("5_n0une")

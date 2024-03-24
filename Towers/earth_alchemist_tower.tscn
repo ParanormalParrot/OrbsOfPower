@@ -49,6 +49,8 @@ collision_layer = 3
 collision_mask = 3
 script = ExtResource("1_6ktuo")
 homunculusAsset = ExtResource("2_ttpjc")
+number_of_summons = 1
+spawnRate = 8
 
 [node name="ApprenticeMageTower" type="Sprite2D" parent="."]
 position = Vector2(0, -2)
@@ -161,5 +163,8 @@ shape = SubResource("CapsuleShape2D_rgucv")
 [connection signal="body_entered" from="Flag/AggroRange" to="." method="_on_aggro_range_body_entered"]
 [connection signal="body_exited" from="Flag/AggroRange" to="." method="_on_aggro_range_body_exited"]
 [connection signal="input_event" from="Flag/DragHandle" to="Flag" method="_on_drag_handle_input_event"]
+[connection signal="input_event" from="MouseArea2D" to="." method="_on_mouse_area_2d_input_event"]
+[connection signal="mouse_exited" from="TowerUI" to="." method="_on_tower_ui_mouse_exited"]
+[connection signal="pressed" from="TowerUI/DismantleButton" to="." method="_on_dismantle_button_pressed"]
 
 [editable path="TowerUI"]

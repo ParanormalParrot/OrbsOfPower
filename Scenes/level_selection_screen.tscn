@@ -146,7 +146,7 @@ text = "Difficulty: Medium"
 [node name="Label" type="Label" parent="MarginContainer2/VBoxContainer/MarginContainer/HBoxContainer/MarginContainer3/VBoxContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
 theme_override_fonts/font = ExtResource("2_ef6e7")
-text = "4 waves"
+text = "5 waves"
 
 [node name="PlayLevelButton" type="Button" parent="MarginContainer2/VBoxContainer/MarginContainer/HBoxContainer/MarginContainer3/VBoxContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2

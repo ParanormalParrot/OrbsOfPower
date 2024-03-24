@@ -6,8 +6,8 @@ class_name Enemy
 @export var maxHealth = 20
 
 @export var attack_damage = 10
-@export var attack_recharge_time = 2
-var current_attack_recharge_time = attack_recharge_time
+@export var attack_recharge_time = 1.0
+var current_attack_recharge_time = 0
 
 var currentHealth = maxHealth
 var stunTime = 0
@@ -36,23 +36,18 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
+	current_attack_recharge_time-=delta
 	if  stunTime > 0:
 		stunTime-=delta
 	elif isStalled:
-		$StalledIndicator.visible = true
 		if opponent == null:
 			isStalled = false
 			isFighting = false
-			if $AnimationPlayer:
-				$AnimationPlayer.play("walk")
-			$StalledIndicator.visible = false	
 		if isFighting:
-			if $AnimationPlayer:
-				$AnimationPlayer.play("attack")
 			if current_attack_recharge_time <= 0:
 				attack()
 				current_attack_recharge_time = attack_recharge_time
-			current_attack_recharge_time-=delta
+			return
 	elif hypnosisTime > 0:
 		if !is_hypnotized:
 			isStalled = false
@@ -77,12 +72,14 @@ func _process(delta):
 						opponent.opponent = self
 						opponent.isStalled = true
 					else:
+						if $AnimationTree.get("parameters/playback/current") != "walk":
+							$AnimationTree["parameters/playback"].travel("walk")
 						var parent = get_parent()
-						if $AnimationPlayer:
-							$AnimationPlayer.play("walk")
 						parent.set_progress(parent.get_progress() - (1 - slow_effect) * (1+speed_effect) * speed * delta)
 						
 				else:
+					if $AnimationTree.get("parameters/playback/current") != "walk":
+							$AnimationTree["parameters/playback"].travel("walk")
 					var destination = Vector2(opponent.global_position.x + 20, opponent.global_position.y)
 					var direction = global_position.direction_to(destination)
 					var distance = global_position.distance_to(destination)
@@ -97,12 +94,9 @@ func _process(delta):
 				
 			else:
 				if opponent == null:
-					if $AnimationPlayer:
-							$AnimationPlayer.play("walk")
 					isFighting = false
+					opponents = []
 				else:
-					if $AnimationPlayer:
-							$AnimationPlayer.play("attack")
 					if current_attack_recharge_time <= 0:
 						attack()
 						current_attack_recharge_time = attack_recharge_time
@@ -115,6 +109,7 @@ func _process(delta):
 		if is_hypnotized:
 			if opponent != null:
 				opponent.isStalled = false
+				opponent.opponent = null
 				opponent = null
 			scale.x*=-1
 			$HypnosisIndicator.visible = false
@@ -129,7 +124,9 @@ func _process(delta):
 			speed_buff_time-=delta
 		else:
 			speed_effect = 0
-			
+		if $AnimationTree.get("parameters/playback/current") != "walk":
+			$AnimationTree["parameters/playback"].travel("walk")
+
 		var parent = get_parent()
 		parent.set_progress(parent.get_progress() + (1 - slow_effect) * (1+speed_effect) * speed * delta)
 		
@@ -165,7 +162,9 @@ func death():
 
 
 func attack():
+	$AnimationTree["parameters/playback"].travel("attack")
 	opponent.take_damage(attack_damage)
+	
 	
 
 func restore_health(restored_amount):

@@ -1,4 +1,4 @@
-[gd_scene load_steps=28 format=3 uid="uid://dmbyq5o87jm26"]
+[gd_scene load_steps=39 format=3 uid="uid://dmbyq5o87jm26"]
 
 [ext_resource type="Script" path="res://Controllers/player_stats_controller.gd" id="1_imsap"]
 [ext_resource type="PackedScene" uid="uid://634w27twweus" path="res://UI/level_ui.tscn" id="2_2i4ph"]
@@ -12,6 +12,8 @@
 [ext_resource type="PackedScene" uid="uid://bcwkfma1ut3ji" path="res://Paths/level2_path2.tscn" id="9_8yd7y"]
 [ext_resource type="PackedScene" uid="uid://bbnjskngw8jjo" path="res://Enemies/knight.tscn" id="9_odn7w"]
 [ext_resource type="Script" path="res://Scenes/path_end.gd" id="10_e716g"]
+[ext_resource type="PackedScene" uid="uid://c81j5yqd32qwv" path="res://Enemies/saber_tooth_rabbit.tscn" id="10_gsx8k"]
+[ext_resource type="PackedScene" uid="uid://c13wk781qy235" path="res://Enemies/blood_mage.tscn" id="11_sehvw"]
 
 [sub_resource type="Resource" id="Resource_qsdu6"]
 script = ExtResource("6_wvqvu")
@@ -58,7 +60,7 @@ duration = 40.0
 [sub_resource type="Resource" id="Resource_og663"]
 script = ExtResource("6_wvqvu")
 enemy = ExtResource("9_odn7w")
-count = 3
+count = 2
 path_index = 0
 start = 0.0
 step = 8.0
@@ -66,7 +68,7 @@ step = 8.0
 [sub_resource type="Resource" id="Resource_ilkq7"]
 script = ExtResource("6_wvqvu")
 enemy = ExtResource("8_tq0xv")
-count = 7
+count = 3
 path_index = 0
 start = 1.0
 step = 3.0
@@ -79,15 +81,23 @@ path_index = 1
 start = 1.5
 step = 1.0
 
+[sub_resource type="Resource" id="Resource_vmake"]
+script = ExtResource("6_wvqvu")
+enemy = ExtResource("10_gsx8k")
+count = 2
+path_index = 1
+start = 0.0
+step = 15.0
+
 [sub_resource type="Resource" id="Resource_nj2bv"]
 script = ExtResource("7_eufxa")
-enemy_sequences = Array[ExtResource("6_wvqvu")]([SubResource("Resource_og663"), SubResource("Resource_ilkq7"), SubResource("Resource_kmqw3")])
+enemy_sequences = Array[ExtResource("6_wvqvu")]([SubResource("Resource_og663"), SubResource("Resource_ilkq7"), SubResource("Resource_kmqw3"), SubResource("Resource_vmake")])
 duration = 40.0
 
 [sub_resource type="Resource" id="Resource_ww0f8"]
 script = ExtResource("6_wvqvu")
 enemy = ExtResource("9_odn7w")
-count = 6
+count = 5
 path_index = 0
 start = 1.0
 step = 4.0
@@ -95,10 +105,10 @@ step = 4.0
 [sub_resource type="Resource" id="Resource_wi37w"]
 script = ExtResource("6_wvqvu")
 enemy = ExtResource("8_tq0xv")
-count = 10
+count = 7
 path_index = 1
 start = 2.0
-step = 2.0
+step = 3.0
 
 [sub_resource type="Resource" id="Resource_eioaa"]
 script = ExtResource("6_wvqvu")
@@ -108,10 +118,71 @@ path_index = 1
 start = 1.0
 step = 0.8
 
+[sub_resource type="Resource" id="Resource_l3jwg"]
+script = ExtResource("6_wvqvu")
+enemy = ExtResource("10_gsx8k")
+count = 5
+path_index = 1
+start = 5.0
+step = 5.0
+
+[sub_resource type="Resource" id="Resource_hcfc4"]
+script = ExtResource("6_wvqvu")
+enemy = ExtResource("11_sehvw")
+count = 3
+path_index = 1
+start = 3.0
+step = 10.0
+
 [sub_resource type="Resource" id="Resource_5dvqx"]
 script = ExtResource("7_eufxa")
-enemy_sequences = Array[ExtResource("6_wvqvu")]([SubResource("Resource_ww0f8"), SubResource("Resource_wi37w"), SubResource("Resource_eioaa")])
+enemy_sequences = Array[ExtResource("6_wvqvu")]([SubResource("Resource_ww0f8"), SubResource("Resource_wi37w"), SubResource("Resource_eioaa"), SubResource("Resource_l3jwg"), SubResource("Resource_hcfc4")])
 duration = 40.0
+
+[sub_resource type="Resource" id="Resource_bdl2l"]
+script = ExtResource("6_wvqvu")
+enemy = ExtResource("9_odn7w")
+count = 10
+path_index = 0
+start = 4.0
+step = 4.0
+
+[sub_resource type="Resource" id="Resource_i03ku"]
+script = ExtResource("6_wvqvu")
+enemy = ExtResource("11_sehvw")
+count = 7
+path_index = 0
+start = 2.0
+step = 4.0
+
+[sub_resource type="Resource" id="Resource_tsgtw"]
+script = ExtResource("6_wvqvu")
+enemy = ExtResource("10_gsx8k")
+count = 7
+path_index = 1
+start = 1.0
+step = 4.0
+
+[sub_resource type="Resource" id="Resource_2s3y2"]
+script = ExtResource("6_wvqvu")
+enemy = ExtResource("8_tq0xv")
+count = 7
+path_index = 1
+start = 4.0
+step = 4.0
+
+[sub_resource type="Resource" id="Resource_2l5pp"]
+script = ExtResource("6_wvqvu")
+enemy = ExtResource("5_53r2c")
+count = 20
+path_index = 1
+start = 4.0
+step = 2.0
+
+[sub_resource type="Resource" id="Resource_u570j"]
+script = ExtResource("7_eufxa")
+enemy_sequences = Array[ExtResource("6_wvqvu")]([SubResource("Resource_bdl2l"), SubResource("Resource_i03ku"), SubResource("Resource_tsgtw"), SubResource("Resource_2s3y2"), SubResource("Resource_2l5pp")])
+duration = 50.0
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_8rsg6"]
 size = Vector2(112.5, 281)
@@ -124,8 +195,8 @@ script = ExtResource("1_imsap")
 defeat_menu = NodePath("../LevelUI/DefeatMenu")
 manaLabel = NodePath("../LevelUI/ManaStar/ManaCountLabel")
 heartsLabel = NodePath("../LevelUI/Heart/HeartCountLabel")
-mana = 500
-hearts = 30
+mana = 600
+hearts = 20
 
 [node name="LevelUI" parent="." instance=ExtResource("2_2i4ph")]
 
@@ -156,7 +227,7 @@ layer_0/tile_data = PackedInt32Array(1114114, 655360, 2, 1114115, 655360, 2, 111
 [node name="WaveController" type="Node2D" parent="." node_paths=PackedStringArray("time_label", "wave_label", "victory_menu")]
 y_sort_enabled = true
 script = ExtResource("4_g331u")
-waves = Array[ExtResource("7_eufxa")]([SubResource("Resource_y4yrr"), SubResource("Resource_4r7ec"), SubResource("Resource_nj2bv"), SubResource("Resource_5dvqx")])
+waves = Array[ExtResource("7_eufxa")]([SubResource("Resource_y4yrr"), SubResource("Resource_4r7ec"), SubResource("Resource_nj2bv"), SubResource("Resource_5dvqx"), SubResource("Resource_u570j")])
 time_label = NodePath("../LevelUI/TimeLabel")
 wave_label = NodePath("../LevelUI/WaveCountLabel")
 paths = Array[PackedScene]([ExtResource("8_ar880"), ExtResource("9_8yd7y")])

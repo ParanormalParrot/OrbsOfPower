@@ -1,13 +1,13 @@
 [gd_scene load_steps=4 format=3 uid="uid://cunwuxg8an2g1"]
 
-[ext_resource type="Script" path="res://UI/OrbDragObject.gd" id="1_xdaul"]
+[ext_resource type="Script" path="res://UI/orb_drag_object.gd" id="1_oe7tt"]
 [ext_resource type="Texture2D" uid="uid://b17mcvsm2f03i" path="res://Sprites/psychic_orb.png" id="2_d54pa"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_hhteu"]
 radius = 25.02
 
 [node name="PsychicOrbDragObject" type="Node2D"]
-script = ExtResource("1_xdaul")
+script = ExtResource("1_oe7tt")
 
 [node name="PsychicOrb" type="Sprite2D" parent="."]
 texture = ExtResource("2_d54pa")

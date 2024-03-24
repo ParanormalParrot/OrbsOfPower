@@ -3,6 +3,7 @@ extends AttackTower
 class_name SeismicPsychicMageTower
 
 func attack():
+	$AnimationTree["parameters/playback"].travel("attack")
 	var projectile1 = projectileAsset.instantiate()
 	var projectile2 = projectileAsset.instantiate()
 	var projectile3 = projectileAsset.instantiate()

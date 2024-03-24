@@ -13,6 +13,7 @@ func attack():
 			if i.get_parent().get_progress() > target.get_parent().get_progress():
 				target = i;
 		target.hypnosisTime = hypnosis_time
+		target.take_damage(projectileDamage, Enums.DamageType.PSYCHIC)
 		controlled_enemy = target
 
 

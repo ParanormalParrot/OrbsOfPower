@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://8efyctis286k"]
+[gd_scene load_steps=18 format=3 uid="uid://8efyctis286k"]
 
 [ext_resource type="Script" path="res://Towers/seismic_psychic_mage_tower.gd" id="1_2517y"]
 [ext_resource type="PackedScene" uid="uid://c675dwdjge3r5" path="res://Projectiles/seismic_wave.tscn" id="2_g66lm"]
@@ -6,6 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://tg1qqpi86ncg" path="res://Sprites/apprentice_mage_tower.png" id="3_kqwvo"]
 [ext_resource type="Texture2D" uid="uid://bcslasudct467" path="res://Sprites/seismic_psychic_banner.png" id="4_4bhyb"]
 [ext_resource type="PackedScene" uid="uid://cpafvfljhg0um" path="res://UI/tower_ui.tscn" id="6_uk0cb"]
+[ext_resource type="Texture2D" uid="uid://bj8o1vscge3ps" path="res://Sprites/seismic_psychic_mage_attack.png" id="7_he11c"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_umy21"]
 radius = 75.0
@@ -15,13 +16,117 @@ height = 200.0
 radius = 15.0
 height = 45.0
 
+[sub_resource type="Animation" id="Animation_nmn5w"]
+resource_name = "attack"
+length = 0.3
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ApprenticeMageTower/PsychicMage:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("7_he11c")]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("ApprenticeMageTower/PsychicMage:hframes")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [3]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("ApprenticeMageTower/PsychicMage:frame")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [0, 1, 2]
+}
+
+[sub_resource type="Animation" id="Animation_qfsjw"]
+resource_name = "idle"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ApprenticeMageTower/PsychicMage:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("3_co7nw")]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("ApprenticeMageTower/PsychicMage:hframes")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [1]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("ApprenticeMageTower/PsychicMage:frame")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_nc6y3"]
+_data = {
+"attack": SubResource("Animation_nmn5w"),
+"idle": SubResource("Animation_qfsjw")
+}
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_uk1ob"]
+animation = &"attack"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_xtsll"]
+animation = &"idle"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_u2enl"]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_lfw0c"]
+switch_mode = 2
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_kxok1"]
+states/attack/node = SubResource("AnimationNodeAnimation_uk1ob")
+states/attack/position = Vector2(623, 122)
+states/idle/node = SubResource("AnimationNodeAnimation_xtsll")
+states/idle/position = Vector2(432, 177)
+transitions = ["Start", "idle", SubResource("AnimationNodeStateMachineTransition_u2enl"), "attack", "idle", SubResource("AnimationNodeStateMachineTransition_lfw0c")]
+
 [node name="PsychicMageTower" type="StaticBody2D" groups=["Tower"]]
 collision_layer = 3
 collision_mask = 3
 script = ExtResource("1_2517y")
 projectileAsset = ExtResource("2_g66lm")
-projectileDamage = 14
-recharge_time = 4.0
+projectileDamage = 7
+recharge_time = 5.0
 
 [node name="ApprenticeMageTower" type="Sprite2D" parent="."]
 texture = ExtResource("3_kqwvo")
@@ -57,6 +162,19 @@ rotation = 1.5708
 shape = SubResource("CapsuleShape2D_obql7")
 
 [node name="TowerUI" parent="." instance=ExtResource("6_uk0cb")]
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_nc6y3")
+}
+autoplay = "idle"
+
+[node name="AnimationTree" type="AnimationTree" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_nc6y3")
+}
+tree_root = SubResource("AnimationNodeStateMachine_kxok1")
+anim_player = NodePath("../AnimationPlayer")
 
 [connection signal="area_entered" from="Range" to="." method="_on_range_area_entered"]
 [connection signal="body_entered" from="Range" to="." method="_on_range_body_entered"]

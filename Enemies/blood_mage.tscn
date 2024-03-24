@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://c13wk781qy235"]
+[gd_scene load_steps=26 format=3 uid="uid://c13wk781qy235"]
 
 [ext_resource type="Script" path="res://Enemies/blood_mage.gd" id="1_j1n6o"]
 [ext_resource type="Texture2D" uid="uid://ccjx8k7gcxy4f" path="res://Sprites/hypnosis_indicator.png" id="3_5xc01"]
@@ -6,6 +6,8 @@
 [ext_resource type="Texture2D" uid="uid://y6ssecqafom8" path="res://Sprites/stalled_indicator.png" id="4_21cq1"]
 [ext_resource type="Texture2D" uid="uid://cq5r4r1sk7ae1" path="res://Sprites/blood_mage_heal.png" id="4_nklih"]
 [ext_resource type="Texture2D" uid="uid://cubp583tr7146" path="res://Sprites/blood_mage_attack.png" id="5_imn2w"]
+[ext_resource type="Texture2D" uid="uid://3tgmggadva8i" path="res://Sprites/shadow3.png" id="7_1qfbk"]
+[ext_resource type="Texture2D" uid="uid://ur2f231bt30q" path="res://Sprites/blood_mage.png" id="7_wwu6n"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_vqmay"]
 radius = 1.25602
@@ -18,47 +20,6 @@ height = 48.0
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_7e0u7"]
 radius = 34.0
 height = 78.0
-
-[sub_resource type="Animation" id="Animation_1uf0k"]
-resource_name = "walk"
-length = 0.4
-loop_mode = 1
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("BloodMage:texture")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [ExtResource("4_3toiw")]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("BloodMage:hframes")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [4]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("BloodMage:frame")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0, 0.1, 0.2, 0.3),
-"transitions": PackedFloat32Array(1, 1, 1, 1),
-"update": 1,
-"values": [0, 1, 2, 3]
-}
 
 [sub_resource type="Animation" id="Animation_vussr"]
 resource_name = "attack"
@@ -120,10 +81,10 @@ tracks/1/path = NodePath("BloodMage:hframes")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(),
-"transitions": PackedFloat32Array(),
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
 "update": 1,
-"values": []
+"values": [1]
 }
 tracks/2/type = "value"
 tracks/2/imported = false
@@ -132,22 +93,151 @@ tracks/2/path = NodePath("BloodMage:frame")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
-"times": PackedFloat32Array(),
-"transitions": PackedFloat32Array(),
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
 "update": 1,
-"values": []
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_8qcjd"]
+resource_name = "idle"
+length = 0.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("BloodMage:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("7_wwu6n")]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("BloodMage:hframes")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [1]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("BloodMage:frame")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_1uf0k"]
+resource_name = "walk"
+length = 0.4
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("BloodMage:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("4_3toiw")]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("BloodMage:hframes")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [4]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("BloodMage:frame")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_p66rn"]
 _data = {
 "attack": SubResource("Animation_vussr"),
 "heal": SubResource("Animation_luub1"),
+"idle": SubResource("Animation_8qcjd"),
 "walk": SubResource("Animation_1uf0k")
 }
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_xv0a3"]
+animation = &"attack"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_y8i66"]
+animation = &"heal"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_n8d1h"]
+animation = &"idle"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_wkjsd"]
+animation = &"walk"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_oi814"]
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_ulylj"]
+switch_mode = 2
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_1p6e0"]
+switch_mode = 2
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_wjoa1"]
+switch_mode = 2
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_kb3t2"]
+states/Start/position = Vector2(175, 134)
+states/attack/node = SubResource("AnimationNodeAnimation_xv0a3")
+states/attack/position = Vector2(522, 119)
+states/heal/node = SubResource("AnimationNodeAnimation_y8i66")
+states/heal/position = Vector2(642, 280)
+states/idle/node = SubResource("AnimationNodeAnimation_n8d1h")
+states/idle/position = Vector2(507, 201)
+states/walk/node = SubResource("AnimationNodeAnimation_wkjsd")
+states/walk/position = Vector2(345, 168)
+transitions = ["Start", "walk", SubResource("AnimationNodeStateMachineTransition_oi814"), "attack", "idle", SubResource("AnimationNodeStateMachineTransition_ulylj"), "walk", "idle", SubResource("AnimationNodeStateMachineTransition_1p6e0"), "heal", "idle", SubResource("AnimationNodeStateMachineTransition_wjoa1")]
+graph_offset = Vector2(-14, -31)
 
 [node name="BloodMage" type="CharacterBody2D" groups=["Enemy"]]
 collision_mask = 0
 script = ExtResource("1_j1n6o")
+healing_recharge_time = 5
+speed = 30
+maxHealth = 150
+attack_damage = 15
+heartCost = 2
+manaReward = 30
+PsychicDefense = 0.3
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, -21)
@@ -173,8 +263,10 @@ position = Vector2(0, -51)
 texture = ExtResource("4_21cq1")
 
 [node name="BloodMage" type="Sprite2D" parent="."]
-texture = ExtResource("4_nklih")
+texture = ExtResource("4_3toiw")
 offset = Vector2(0, -32)
+hframes = 4
+frame = 2
 
 [node name="HealingRange" type="Area2D" parent="."]
 
@@ -187,5 +279,21 @@ libraries = {
 "": SubResource("AnimationLibrary_p66rn")
 }
 
+[node name="Shadow3" type="Sprite2D" parent="."]
+z_index = -1
+position = Vector2(1, -2)
+texture = ExtResource("7_1qfbk")
+
+[node name="AnimationTree" type="AnimationTree" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_p66rn")
+}
+tree_root = SubResource("AnimationNodeStateMachine_kb3t2")
+anim_player = NodePath("../AnimationPlayer")
+
 [connection signal="body_entered" from="Sight" to="." method="_on_sight_body_entered"]
 [connection signal="body_exited" from="Sight" to="." method="_on_sight_body_exited"]
+[connection signal="area_entered" from="HealingRange" to="." method="_on_healing_range_area_entered"]
+[connection signal="area_exited" from="HealingRange" to="." method="_on_healing_range_area_exited"]
+[connection signal="body_entered" from="HealingRange" to="." method="_on_healing_range_body_entered"]
+[connection signal="body_exited" from="HealingRange" to="." method="_on_healing_range_body_exited"]

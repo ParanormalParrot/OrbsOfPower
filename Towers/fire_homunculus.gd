@@ -6,5 +6,6 @@ class_name FireHomunculus
 
 
 func attack():
+	$AnimationTree["parameters/playback"].travel("attack")
 	opponent.take_damage(attackDamage, Enums.DamageType.PHYSICAL)
 	opponent.take_damage(fire_attack_damage, Enums.DamageType.FIRE)

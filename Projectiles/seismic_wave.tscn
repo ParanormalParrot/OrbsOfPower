@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=3 uid="uid://c675dwdjge3r5"]
 
-[ext_resource type="Script" path="res://Projectiles/psychic_wave.gd" id="1_ad4nu"]
+[ext_resource type="Script" path="res://Projectiles/seismic_wave.gd" id="1_xr33r"]
 [ext_resource type="Texture2D" uid="uid://b50pl1akxbic" path="res://Sprites/seismic_psychic_wave.png" id="2_635vk"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_32bip"]
@@ -11,9 +11,8 @@ height = 44.0
 radius = 4.0
 
 [node name="PsychicWave" type="CharacterBody2D"]
-script = ExtResource("1_ad4nu")
-speed = 200
-lifetime = 0.5
+script = ExtResource("1_xr33r")
+lifetime = 0.4
 
 [node name="PsychicWave" type="Sprite2D" parent="."]
 rotation = -1.5708

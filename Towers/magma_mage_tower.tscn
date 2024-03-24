@@ -236,8 +236,10 @@ offset = Vector2(0, -16)
 
 [node name="EarthMage" type="Sprite2D" parent="."]
 position = Vector2(0, -9)
-texture = ExtResource("4_6op31")
+texture = ExtResource("7_1sfxt")
 offset = Vector2(0, -32)
+hframes = 3
+frame = 2
 
 [node name="ShotPoint" type="Marker2D" parent="."]
 position = Vector2(20, -29)

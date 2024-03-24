@@ -5,7 +5,8 @@ class_name EarthGolem
 @export var earthquakePrefab: PackedScene
 @export var earthquake_damage = 10
 func attack():
-	opponent.take_damage(attackDamage)
+	$AnimationTree["parameters/playback"].travel("attack")
+	opponent.take_damage(attackDamage, Enums.DamageType.PHYSICAL)
 	var earthquake = earthquakePrefab.instantiate()
 	get_parent().add_child(earthquake)
 	earthquake.damage = earthquake_damage

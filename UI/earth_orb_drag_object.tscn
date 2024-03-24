@@ -1,13 +1,13 @@
 [gd_scene load_steps=4 format=3 uid="uid://cviikrtesrao1"]
 
-[ext_resource type="Script" path="res://UI/OrbDragObject.gd" id="1_jex5c"]
+[ext_resource type="Script" path="res://UI/orb_drag_object.gd" id="1_val04"]
 [ext_resource type="Texture2D" uid="uid://bhrkxlvvnajl" path="res://Sprites/earth_orb.png" id="2_p0iby"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_hhteu"]
 radius = 25.02
 
 [node name="FireOrbDragObject" type="Node2D"]
-script = ExtResource("1_jex5c")
+script = ExtResource("1_val04")
 
 [node name="FireOrb" type="Sprite2D" parent="."]
 texture = ExtResource("2_p0iby")

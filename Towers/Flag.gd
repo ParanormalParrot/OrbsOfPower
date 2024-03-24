@@ -13,27 +13,25 @@ var position_changed = false
 
 func _ready():
 	set_process_input(true)
+	previous_position = global_position
 	
 
-func _physics_process(delta):
-	if get_parent().tower_ui.visible and dragging:
-		if self in range.get_overlapping_bodies() and $Area2D.get_overlapping_bodies().size() == 0:
-			previous_drag_position = global_position
-			global_position = get_global_mouse_position()
-			
-		else:
-			global_position = previous_position
-			is_in_range = true
-			dragging = false
 
 
 func _on_drag_handle_input_event(viewport, event, shape_idx):
-	if Input.is_action_pressed("LMB"):
-		if !dragging:
+	print(previous_position)
+	if get_parent().tower_ui.visible:
+		if event is InputEventMouseButton and event.pressed:
 			previous_position = global_position
-		dragging = true
-	else:
-		dragging = false
+		if event is InputEventMouseMotion and event.button_mask == 1:
+			global_position = get_global_mouse_position()
+		if event is InputEventMouseButton and event.button_mask == 0:
+			if $Area2D.get_overlapping_bodies().size() == 0:
+				global_position = get_global_mouse_position()
+				get_parent().reposition_homunculi()
+		
+			else:
+				global_position = previous_position
 		
 
 

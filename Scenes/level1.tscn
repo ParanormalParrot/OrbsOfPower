@@ -16,7 +16,7 @@
 [sub_resource type="Resource" id="Resource_ehsvl"]
 script = ExtResource("6_yyeoy")
 enemy = ExtResource("5_14yby")
-count = 10
+count = 2
 path_index = 0
 start = 1.0
 step = 2.0
@@ -99,10 +99,6 @@ layer_0/tile_data = PackedInt32Array(393217, 65536, 1, 458756, 65536, 3, 327685,
 [node name="WaveController" type="Node2D" parent="." node_paths=PackedStringArray("time_label", "wave_label", "victory_menu")]
 y_sort_enabled = true
 script = ExtResource("3_1omr7")
-enemies = {
-"footman": ExtResource("4_seoao"),
-"knight": ExtResource("5_14yby")
-}
 waves = Array[ExtResource("7_icwns")]([SubResource("Resource_2yvci"), SubResource("Resource_bs6kx"), SubResource("Resource_6tmhq")])
 time_label = NodePath("../LevelUI/TimeLabel")
 wave_label = NodePath("../LevelUI/WaveCountLabel")

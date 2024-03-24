@@ -16,53 +16,12 @@ height = 42.0
 radius = 20.0
 height = 48.0
 
-[sub_resource type="Animation" id="Animation_3scsn"]
-resource_name = "attack"
-length = 0.3
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Footman-sheet:texture")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [ExtResource("4_tlr8a")]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("Footman-sheet:hframes")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [3]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("Footman-sheet:frame")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0, 0.1, 0.2),
-"transitions": PackedFloat32Array(1, 1, 1),
-"update": 1,
-"values": [0, 1, 2]
-}
-
-[sub_resource type="Animation" id="Animation_f6mjf"]
+[sub_resource type="Animation" id="Animation_3v48w"]
 resource_name = "idle"
-length = 0.1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Footman-sheet:texture")
+tracks/0/path = NodePath(".:texture")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -74,113 +33,150 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("Footman-sheet:hframes")
+tracks/1/path = NodePath(".:frame")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [1]
+"values": [0]
 }
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("Footman-sheet:frame")
+tracks/2/path = NodePath(".:hframes")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [0]
+"values": [1]
 }
 
-[sub_resource type="Animation" id="Animation_310dx"]
+[sub_resource type="Animation" id="Animation_ewkm3"]
 resource_name = "walk"
 length = 0.4
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Footman-sheet:texture")
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:texture")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("3_dcf4x")]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".:hframes")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [4]
+}
+
+[sub_resource type="Animation" id="Animation_7l6xf"]
+resource_name = "attack"
+length = 0.3
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:texture")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [ExtResource("3_dcf4x")]
+"values": [ExtResource("4_tlr8a")]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("Footman-sheet:hframes")
+tracks/1/path = NodePath(".:hframes")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [4]
+"values": [3]
 }
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("Footman-sheet:frame")
+tracks/2/path = NodePath(".:frame")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
-"times": PackedFloat32Array(0, 0.1, 0.2, 0.3),
-"transitions": PackedFloat32Array(1, 1, 1, 1),
+"times": PackedFloat32Array(0, 0.1, 0.2),
+"transitions": PackedFloat32Array(1, 1, 1),
 "update": 1,
-"values": [0, 1, 2, 3]
+"values": [0, 1, 2]
 }
 
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_cvl7y"]
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_w0qrt"]
 _data = {
-"attack": SubResource("Animation_3scsn"),
-"idle": SubResource("Animation_f6mjf"),
-"walk": SubResource("Animation_310dx")
+"attack": SubResource("Animation_7l6xf"),
+"idle": SubResource("Animation_3v48w"),
+"walk": SubResource("Animation_ewkm3")
 }
 
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_xv0a3"]
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_sc07t"]
 animation = &"attack"
 
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_n8d1h"]
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_aaav1"]
 animation = &"idle"
 
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_wkjsd"]
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_ku2di"]
 animation = &"walk"
 
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_oi814"]
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_aois4"]
 advance_mode = 2
 
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_ulylj"]
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_7py2n"]
 switch_mode = 2
-advance_mode = 2
 
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_1p6e0"]
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_4q33m"]
 switch_mode = 2
-advance_mode = 2
 
-[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_184wv"]
-states/Start/position = Vector2(175, 134)
-states/attack/node = SubResource("AnimationNodeAnimation_xv0a3")
-states/attack/position = Vector2(522, 119)
-states/idle/node = SubResource("AnimationNodeAnimation_n8d1h")
-states/idle/position = Vector2(507, 201)
-states/walk/node = SubResource("AnimationNodeAnimation_wkjsd")
-states/walk/position = Vector2(349, 167)
-transitions = ["Start", "walk", SubResource("AnimationNodeStateMachineTransition_oi814"), "attack", "idle", SubResource("AnimationNodeStateMachineTransition_ulylj"), "walk", "idle", SubResource("AnimationNodeStateMachineTransition_1p6e0")]
-graph_offset = Vector2(-14, -31)
+[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_3qi56"]
+states/attack/node = SubResource("AnimationNodeAnimation_sc07t")
+states/attack/position = Vector2(651, 128)
+states/idle/node = SubResource("AnimationNodeAnimation_aaav1")
+states/idle/position = Vector2(594, 188)
+states/walk/node = SubResource("AnimationNodeAnimation_ku2di")
+states/walk/position = Vector2(420, 175)
+transitions = ["Start", "walk", SubResource("AnimationNodeStateMachineTransition_aois4"), "attack", "idle", SubResource("AnimationNodeStateMachineTransition_7py2n"), "walk", "idle", SubResource("AnimationNodeStateMachineTransition_4q33m")]
 
 [node name="CharacterBody2D" type="CharacterBody2D" groups=["Enemy"]]
 script = ExtResource("1_frbs5")
 speed = 20
-maxHealth = 200
-attack_damage = 30
+maxHealth = 150
+attack_damage = 50
+attack_recharge_time = 1
 heartCost = 3
-manaReward = 40
+manaReward = 50
 PhysicalDefense = 0.6
 FireDefense = 0.3
 
@@ -198,9 +194,10 @@ texture = ExtResource("3_jgvpp")
 [node name="Footman-sheet" type="Sprite2D" parent="."]
 z_as_relative = false
 y_sort_enabled = true
-texture = ExtResource("4_tlr8a")
+texture = ExtResource("3_dcf4x")
 offset = Vector2(0, -40)
-hframes = 3
+hframes = 4
+frame = 3
 
 [node name="StalledIndicator" type="Sprite2D" parent="."]
 position = Vector2(-2, -59)
@@ -218,17 +215,19 @@ position = Vector2(0, -1)
 texture = ExtResource("6_ja86k")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+root_node = NodePath("../Footman-sheet")
 libraries = {
-"": SubResource("AnimationLibrary_cvl7y")
+"": SubResource("AnimationLibrary_w0qrt")
 }
-speed_scale = 0.7
+speed_scale = 0.25
+movie_quit_on_finish = true
 
 [node name="AnimationTree" type="AnimationTree" parent="."]
-deterministic = false
+root_node = NodePath("../Footman-sheet")
 libraries = {
-"": SubResource("AnimationLibrary_cvl7y")
+"": SubResource("AnimationLibrary_w0qrt")
 }
-tree_root = SubResource("AnimationNodeStateMachine_184wv")
+tree_root = SubResource("AnimationNodeStateMachine_3qi56")
 anim_player = NodePath("../AnimationPlayer")
 
 [connection signal="body_entered" from="Sight" to="." method="_on_sight_body_entered"]

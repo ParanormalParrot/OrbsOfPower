@@ -1,10 +1,11 @@
-[gd_scene load_steps=18 format=3 uid="uid://bogqunitaidlc"]
+[gd_scene load_steps=21 format=3 uid="uid://bogqunitaidlc"]
 
 [ext_resource type="Texture2D" uid="uid://b4qhya66kqces" path="res://Sprites/footman-Sheet.png" id="1_lof0q"]
 [ext_resource type="Script" path="res://Enemies/enemy.gd" id="1_uo058"]
 [ext_resource type="Texture2D" uid="uid://b0ssbxwy6fmau" path="res://Sprites/footman_attack-Sheet.png" id="2_afu51"]
 [ext_resource type="Texture2D" uid="uid://ccjx8k7gcxy4f" path="res://Sprites/hypnosis_indicator.png" id="3_cn50f"]
 [ext_resource type="Texture2D" uid="uid://y6ssecqafom8" path="res://Sprites/stalled_indicator.png" id="4_dqub0"]
+[ext_resource type="Texture2D" uid="uid://bmpx5gy4dvd5u" path="res://Sprites/footman.png" id="5_hu1u8"]
 [ext_resource type="Texture2D" uid="uid://dlrd506k5g7pk" path="res://Sprites/shadow.png" id="6_maytb"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_vqmay"]
@@ -18,7 +19,6 @@ height = 48.0
 [sub_resource type="Animation" id="Animation_3vl7e"]
 resource_name = "attack"
 length = 0.4
-loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -42,6 +42,59 @@ tracks/1/keys = {
 "transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 1,
 "values": [0, 1, 2, 3]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".:hframes")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [4]
+}
+
+[sub_resource type="Animation" id="Animation_ex7r3"]
+resource_name = "idle"
+length = 0.5
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.0001),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [ExtResource("5_hu1u8"), ExtResource("5_hu1u8")]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:hframes")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [1]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".:frame")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
 }
 
 [sub_resource type="Animation" id="Animation_ewkm3"]
@@ -67,58 +120,78 @@ tracks/1/path = NodePath(".:texture")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(-0.1, 0),
-"transitions": PackedFloat32Array(1, 1),
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [ExtResource("2_afu51"), ExtResource("1_lof0q")]
+"values": [ExtResource("1_lof0q")]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".:hframes")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [4]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_w0qrt"]
 _data = {
 "attack": SubResource("Animation_3vl7e"),
+"idle": SubResource("Animation_ex7r3"),
 "walk": SubResource("Animation_ewkm3")
 }
 
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_4tagw"]
-animation = &"footman_attack"
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_xv0a3"]
+animation = &"attack"
 
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_8qlxk"]
-animation = &"footman_walk"
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_n8d1h"]
+animation = &"idle"
 
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_akb1d"]
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_wkjsd"]
+animation = &"walk"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_oi814"]
 advance_mode = 2
 
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_ypd88"]
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_ulylj"]
+switch_mode = 2
 advance_mode = 2
-advance_condition = &"get_parent().isFighting == true"
 
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_jghit"]
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_1p6e0"]
+switch_mode = 2
 advance_mode = 2
 
 [sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_wufli"]
 states/Start/position = Vector2(175, 134)
-states/footman_attack/node = SubResource("AnimationNodeAnimation_4tagw")
-states/footman_attack/position = Vector2(568, 155)
-states/footman_walk/node = SubResource("AnimationNodeAnimation_8qlxk")
-states/footman_walk/position = Vector2(341, 79)
-transitions = ["Start", "footman_walk", SubResource("AnimationNodeStateMachineTransition_akb1d"), "footman_walk", "footman_attack", SubResource("AnimationNodeStateMachineTransition_ypd88"), "footman_attack", "footman_walk", SubResource("AnimationNodeStateMachineTransition_jghit")]
+states/attack/node = SubResource("AnimationNodeAnimation_xv0a3")
+states/attack/position = Vector2(522, 119)
+states/idle/node = SubResource("AnimationNodeAnimation_n8d1h")
+states/idle/position = Vector2(507, 201)
+states/walk/node = SubResource("AnimationNodeAnimation_wkjsd")
+states/walk/position = Vector2(345, 168)
+transitions = ["Start", "walk", SubResource("AnimationNodeStateMachineTransition_oi814"), "attack", "idle", SubResource("AnimationNodeStateMachineTransition_ulylj"), "walk", "idle", SubResource("AnimationNodeStateMachineTransition_1p6e0")]
 graph_offset = Vector2(-14, -31)
 
 [node name="Footman" type="CharacterBody2D" groups=["Enemy"]]
 collision_mask = 0
 script = ExtResource("1_uo058")
 speed = 40
-maxHealth = 25
-attack_recharge_time = 1
+maxHealth = 30
+attack_damage = 6
 manaReward = 10
 PhysicalDefense = 0.3
 
 [node name="Sprite" type="Sprite2D" parent="."]
 z_as_relative = false
 y_sort_enabled = true
-texture = ExtResource("2_afu51")
+texture = ExtResource("1_lof0q")
 offset = Vector2(0, -24)
 hframes = 4
+frame = 1
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, -17)
@@ -149,14 +222,12 @@ libraries = {
 }
 tree_root = SubResource("AnimationNodeStateMachine_wufli")
 anim_player = NodePath("../AnimationPlayer")
-"parameters/conditions/get_parent().isFighting == true" = false
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 root_node = NodePath("../Sprite")
 libraries = {
 "": SubResource("AnimationLibrary_w0qrt")
 }
-autoplay = "walk"
 movie_quit_on_finish = true
 
 [node name="Shadow" type="Sprite2D" parent="."]

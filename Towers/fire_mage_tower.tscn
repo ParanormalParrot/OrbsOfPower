@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://d326am3piyvyk"]
+[gd_scene load_steps=20 format=3 uid="uid://d326am3piyvyk"]
 
 [ext_resource type="Texture2D" uid="uid://tg1qqpi86ncg" path="res://Sprites/apprentice_mage_tower.png" id="1_6b4fd"]
 [ext_resource type="Script" path="res://Towers/attack_tower.gd" id="1_khrl7"]
@@ -7,6 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://d2q6sl8f7au7f" path="res://Sprites/fire_banner.png" id="3_tr04n"]
 [ext_resource type="Texture2D" uid="uid://cv8jx7up8ylud" path="res://Sprites/fireball.png" id="4_irye3"]
 [ext_resource type="PackedScene" uid="uid://cpafvfljhg0um" path="res://UI/tower_ui.tscn" id="7_ogaqy"]
+[ext_resource type="Texture2D" uid="uid://b3yqubh3xt0sn" path="res://Sprites/fire_mage_behind.png" id="8_pahmi"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_umy21"]
 radius = 75.0
@@ -19,6 +20,160 @@ height = 45.0
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_fgc2j"]
 radius = 15.0
 height = 45.0
+
+[sub_resource type="Animation" id="Animation_k5tgi"]
+resource_name = "idle"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ApprenticeMageTower/FireMage:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("2_60hfo")]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("ApprenticeMageTower/FireMage:hframes")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [1]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("ApprenticeMageTower/FireMage:frame")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Fireball:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(18, -34)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("ShotPoint:position")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(19, -32)]
+}
+
+[sub_resource type="Animation" id="Animation_0wt5s"]
+resource_name = "idle_behind"
+length = 3.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ApprenticeMageTower/FireMage:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("8_pahmi")]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("ApprenticeMageTower/FireMage:hframes")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [1]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("ApprenticeMageTower/FireMage:frame")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Fireball:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-18, -34)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("ShotPoint:position")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-19, -32)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_p35ua"]
+_data = {
+"idle": SubResource("Animation_k5tgi"),
+"idle_behind": SubResource("Animation_0wt5s")
+}
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_ln3ja"]
+animation = &"idle"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_0at4f"]
+animation = &"idle_behind"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_1ppci"]
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_p4mg1"]
+switch_mode = 2
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_f3cuf"]
+states/Start/position = Vector2(195, 205)
+states/idle/node = SubResource("AnimationNodeAnimation_ln3ja")
+states/idle/position = Vector2(414, 126)
+states/idle_behind/node = SubResource("AnimationNodeAnimation_0at4f")
+states/idle_behind/position = Vector2(594, 257)
+transitions = ["Start", "idle", SubResource("AnimationNodeStateMachineTransition_1ppci"), "idle_behind", "idle", SubResource("AnimationNodeStateMachineTransition_p4mg1")]
 
 [node name="FireMageTower" type="StaticBody2D" groups=["Tower"]]
 collision_layer = 3
@@ -34,10 +189,7 @@ texture = ExtResource("1_6b4fd")
 
 [node name="FireMage" type="Sprite2D" parent="ApprenticeMageTower"]
 position = Vector2(0, -36)
-texture = ExtResource("2_60hfo")
-
-[node name="ShotPoint" type="Marker2D" parent="."]
-position = Vector2(20, -29)
+texture = ExtResource("8_pahmi")
 
 [node name="Range" type="Area2D" parent="."]
 
@@ -77,6 +229,21 @@ rotation = 1.5708
 shape = SubResource("CapsuleShape2D_fgc2j")
 
 [node name="TowerUI" parent="." instance=ExtResource("7_ogaqy")]
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_p35ua")
+}
+
+[node name="ShotPoint" type="Marker2D" parent="."]
+position = Vector2(19, -32)
+
+[node name="AnimationTree" type="AnimationTree" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_p35ua")
+}
+tree_root = SubResource("AnimationNodeStateMachine_f3cuf")
+anim_player = NodePath("../AnimationPlayer")
 
 [connection signal="area_entered" from="Range" to="." method="_on_range_area_entered"]
 [connection signal="body_entered" from="Range" to="." method="_on_range_body_entered"]

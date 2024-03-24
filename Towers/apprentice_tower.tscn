@@ -1,9 +1,10 @@
-[gd_scene load_steps=7 format=3 uid="uid://b4hfc1mju8cb2"]
+[gd_scene load_steps=16 format=3 uid="uid://b4hfc1mju8cb2"]
 
 [ext_resource type="Script" path="res://Towers/attack_tower.gd" id="1_3it42"]
 [ext_resource type="Texture2D" uid="uid://tg1qqpi86ncg" path="res://Sprites/apprentice_mage_tower.png" id="1_50qn6"]
 [ext_resource type="Texture2D" uid="uid://cs1mskli4ixet" path="res://Sprites/apprentice_mage.png" id="2_vig1p"]
 [ext_resource type="PackedScene" uid="uid://cpafvfljhg0um" path="res://UI/tower_ui.tscn" id="4_dic27"]
+[ext_resource type="Texture2D" uid="uid://dqav1y2e6cghw" path="res://Sprites/apprentice_mage_behind.png" id="5_ytu3x"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_rmnys"]
 radius = 15.0
@@ -12,6 +13,64 @@ height = 45.0
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_umy21"]
 radius = 75.0
 height = 200.0
+
+[sub_resource type="Animation" id="Animation_a5phh"]
+resource_name = "idle"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ApprenticeMageTower/ApprenticeMage:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("2_vig1p")]
+}
+
+[sub_resource type="Animation" id="Animation_lnaas"]
+resource_name = "idle_behind"
+length = 2.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ApprenticeMageTower/ApprenticeMage:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("5_ytu3x")]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_sa5t6"]
+_data = {
+"idle": SubResource("Animation_a5phh"),
+"idle_behind": SubResource("Animation_lnaas")
+}
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_ln3ja"]
+animation = &"idle"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_0at4f"]
+animation = &"idle_behind"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_1ppci"]
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_p4mg1"]
+switch_mode = 2
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_6d2gn"]
+states/Start/position = Vector2(195, 205)
+states/idle/node = SubResource("AnimationNodeAnimation_ln3ja")
+states/idle/position = Vector2(414, 126)
+states/idle_behind/node = SubResource("AnimationNodeAnimation_0at4f")
+states/idle_behind/position = Vector2(594, 257)
+transitions = ["Start", "idle", SubResource("AnimationNodeStateMachineTransition_1ppci"), "idle_behind", "idle", SubResource("AnimationNodeStateMachineTransition_p4mg1")]
 
 [node name="ApprenticeTower" type="StaticBody2D" groups=["Tower"]]
 collision_layer = 3
@@ -30,7 +89,7 @@ shape = SubResource("CapsuleShape2D_rmnys")
 texture = ExtResource("1_50qn6")
 
 [node name="ApprenticeMage" type="Sprite2D" parent="ApprenticeMageTower"]
-position = Vector2(0, -25)
+position = Vector2(0, -27)
 texture = ExtResource("2_vig1p")
 
 [node name="ShotPoint" type="Marker2D" parent="."]
@@ -60,6 +119,19 @@ visibility_layer = 3
 position = Vector2(0, 5)
 rotation = 1.5708
 shape = SubResource("CapsuleShape2D_rmnys")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_sa5t6")
+}
+autoplay = "idle"
+
+[node name="AnimationTree" type="AnimationTree" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_sa5t6")
+}
+tree_root = SubResource("AnimationNodeStateMachine_6d2gn")
+anim_player = NodePath("../AnimationPlayer")
 
 [connection signal="input_event" from="." to="." method="_on_input_event"]
 [connection signal="area_entered" from="Range" to="." method="_on_range_area_entered"]

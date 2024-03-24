@@ -50,6 +50,12 @@ func attack():
 				target = i;
 		projectiile.target = target;
 		isAttackCharged = false	
+		var angle = rad_to_deg((target.global_position - global_position).angle())
+		if angle >= -30 && angle <= 210:
+			$AnimationTree["parameters/playback"].travel("idle")
+		else:
+			$AnimationTree["parameters/playback"].travel("idle_behind")
+		
 
 	
 
