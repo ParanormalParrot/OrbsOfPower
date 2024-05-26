@@ -77,3 +77,10 @@ shape = SubResource("CapsuleShape2D_ysj3e")
 [connection signal="body_exited" from="Range" to="." method="_on_range_body_exited"]
 [connection signal="body_shape_exited" from="Range" to="." method="_on_range_body_shape_exited"]
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+[connection signal="input_event" from="MouseArea2D" to="." method="_on_mouse_area_2d_input_event"]
+[connection signal="gui_input" from="TowerUI" to="." method="_on_tower_ui_gui_input"]
+[connection signal="mouse_exited" from="TowerUI" to="." method="_on_tower_ui_mouse_exited"]
+[connection signal="mouse_exited" from="TowerUI/DismantleButton" to="." method="_on_dismantle_button_mouse_exited"]
+[connection signal="pressed" from="TowerUI/DismantleButton" to="." method="_on_dismantle_button_pressed"]
+
+[editable path="TowerUI"]

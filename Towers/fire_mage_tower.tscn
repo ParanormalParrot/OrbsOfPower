@@ -189,7 +189,7 @@ texture = ExtResource("1_6b4fd")
 
 [node name="FireMage" type="Sprite2D" parent="ApprenticeMageTower"]
 position = Vector2(0, -36)
-texture = ExtResource("8_pahmi")
+texture = ExtResource("2_60hfo")
 
 [node name="Range" type="Area2D" parent="."]
 

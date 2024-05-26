@@ -9,6 +9,7 @@ var projectileDamage = 5
 var enemies = []
 var target
 var isAttackCharged = false
+var s
 
 
 func _on_range_body_entered(body):

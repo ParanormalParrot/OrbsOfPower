@@ -16,8 +16,6 @@ func _ready():
 	previous_position = global_position
 	
 
-
-
 func _on_drag_handle_input_event(viewport, event, shape_idx):
 	print(previous_position)
 	if get_parent().tower_ui.visible:
@@ -29,7 +27,6 @@ func _on_drag_handle_input_event(viewport, event, shape_idx):
 			if $Area2D.get_overlapping_bodies().size() == 0:
 				global_position = get_global_mouse_position()
 				get_parent().reposition_homunculi()
-		
 			else:
 				global_position = previous_position
 		

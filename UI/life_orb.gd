@@ -1,4 +1,4 @@
-extends TextureRect
+extends Orb
 
 class_name LifeOrb
 
@@ -10,12 +10,6 @@ class_name LifeOrb
 @onready var fireAlchemistTowerPrefab = preload("res://Towers/fire_alchemist_tower.tscn")
 @onready var earthAlchemistTower = preload("res://Towers/earth_alchemist_tower.tscn")
 @onready var hypnosistTower = preload("res://Towers/hypnosist_tower.tscn")
-
-
-
-@export var gameController: Node2D
-@export var mana_cost = 100
-
 
 func _ready():
 	$ManaCostLabel.text = str(mana_cost)

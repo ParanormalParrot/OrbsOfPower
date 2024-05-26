@@ -14,4 +14,3 @@ func attack():
 				target = i;
 		projectiile.set_target(target)
 		isAttackCharged = false	
-

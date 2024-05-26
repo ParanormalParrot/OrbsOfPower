@@ -1,4 +1,4 @@
-extends TextureRect
+extends Orb
 
 class_name EarthOrb
 
@@ -11,18 +11,8 @@ class_name EarthOrb
 @onready var earthAlchemistTowerPrefab = preload("res://Towers/earth_alchemist_tower.tscn")
 
 @onready var seismicPsychicMageTowerPrefab = preload("res://Towers/seismic_psychic_mage_tower.tscn")
-@export var gameController: Node2D
-@export var mana_cost = 100
 
-
-func _ready():
-	$ManaCostLabel.text = str(mana_cost)
-
-func _process(delta):
-	if gameController.mana >= mana_cost:
-		$ManaCostLabel.set("theme_override_colors/font_color",Color.WHITE)
-	else:
-		$ManaCostLabel.set("theme_override_colors/font_color",Color.RED)
+		
 func _on_gui_input(event):
 	if gameController.mana >= mana_cost:
 		if event is InputEventMouseButton and event.button_mask == 1:

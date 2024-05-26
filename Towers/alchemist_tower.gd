@@ -1,4 +1,4 @@
-extends StaticBody2D
+extends Tower
 
 class_name AlchemistTower
 var enemies = []
@@ -7,11 +7,7 @@ var homunculi = []
 @export var number_of_summons = 2
 @export var spawnRate = 5
 var currentSpawnTime = spawnRate
-var cost
-@onready var tower_ui = $TowerUI
 
-func _ready():
-	$TowerUI.visible = false
 	
 func _process(delta):
 	currentSpawnTime-=delta
@@ -28,7 +24,6 @@ func _process(delta):
 			homunculus.default_position = position
 			homunculus.enemies = enemies
 			currentSpawnTime = spawnRate
-
 			
 func _on_aggro_range_body_entered(body):
 	if body.is_in_group("Enemy") and !(body in enemies):
@@ -46,20 +41,6 @@ func _on_range_body_exited(body):
 	if body == $Flag:
 		$Flag.is_in_range = false
 		
-func _on_mouse_area_2d_input_event(viewport, event, shape_idx):
-	if event is InputEventMouseButton and event.button_mask == 1:
-		$TowerUI.visible = !$TowerUI.visible
-
-func _on_dismantle_button_pressed():
-	get_tree().get_root().get_node("Main/PlayerStatsController").mana+= cost/2
-	for i in homunculi:
-		if is_instance_valid(i):
-			i.queue_free()
-	queue_free()
-	
-func _on_tower_ui_mouse_exited():
-	$TowerUI.visible = false
-	
 func _exit_tree():
 	for i in homunculi:
 		if is_instance_valid(i):

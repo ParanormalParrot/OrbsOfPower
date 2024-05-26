@@ -5,7 +5,6 @@ class_name MainMenu
 @export var menu: Control
 @export var options: Control
 
-# Called when the node enters the scene tree for the first time.
 func _ready():
 	GlobalAudioManager.menu_music.play()
 
