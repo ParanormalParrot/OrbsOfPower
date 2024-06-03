@@ -1,11 +1,10 @@
-extends StaticBody2D
+extends Tower
 
 class_name AttackTower
 
 @export var projectileAsset = preload("res://Projectiles/spark.tscn")
 @export var projectileDamage = 5
 @export var recharge_time = 1.0
-var cost = 0
 
 var current_recharge_time = recharge_time
 var enemies = []
@@ -15,13 +14,9 @@ var isAttackCharged = false
 
 @export var animation_tree = AnimationTree
 
-func _ready():
-	$TowerUI.visible = false
-
 func _on_range_body_entered(body):
 	if body.is_in_group("Enemy"):
 		enemies.append(body)
-		
 
 
 func _on_range_body_exited(body):
@@ -54,13 +49,4 @@ func attack():
 		else:
 			$AnimationTree["parameters/playback"].travel("idle_behind")
 		
-func _on_mouse_area_2d_input_event(viewport, event, shape_idx):
-	if event is InputEventMouseButton and event.button_mask == 1:
-		$TowerUI.visible = !$TowerUI.visible
 
-func _on_dismantle_button_pressed():
-	get_tree().get_root().get_node("Main/PlayerStatsController").mana+= cost/2
-	queue_free()
-	
-func _on_tower_ui_mouse_exited():
-	$TowerUI.visible = false
