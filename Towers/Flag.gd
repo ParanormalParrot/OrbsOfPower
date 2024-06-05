@@ -30,7 +30,3 @@ func _on_drag_handle_input_event(viewport, event, shape_idx):
 			else:
 				global_position = previous_position
 		
-
-
-
-

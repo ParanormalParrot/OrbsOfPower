@@ -15,6 +15,7 @@ dest_files=["res://.godot/imported/Old Fax.ttf-986507bab631a36aecc34bdeeedb076c.
 Rendering=null
 antialiasing=1
 generate_mipmaps=false
+disable_embedded_bitmaps=true
 multichannel_signed_distance_field=false
 msdf_pixel_range=8
 msdf_size=48

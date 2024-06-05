@@ -71,4 +71,11 @@ func _on_range_body_exited(body):
 				beam_outline.width = 2
 
 	
-	
+
+
+func _on_tower_ui_gui_input(event: InputEvent) -> void:
+	pass # Replace with function body.
+
+
+func _on_mouse_area_2d_mouse_exited() -> void:
+	pass # Replace with function body.

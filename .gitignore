@@ -1,2 +1,9 @@
-# Godot 4+ specific ignores
-.godot/
+.import/
+.config/
+mono/
+
+*.log
+*.tmp
+
+*.godot
+*.translation

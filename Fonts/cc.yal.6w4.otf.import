@@ -15,6 +15,7 @@ dest_files=["res://.godot/imported/cc.yal.6w4.otf-fc8351cfd8c1668b6f0b8890fe8ebf
 Rendering=null
 antialiasing=1
 generate_mipmaps=false
+disable_embedded_bitmaps=true
 multichannel_signed_distance_field=false
 msdf_pixel_range=8
 msdf_size=48
